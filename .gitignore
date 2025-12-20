@@ -1,0 +1,105 @@
+############################
+# General
+############################
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+############################
+# VS Code
+############################
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+############################
+# IntelliJ IDEA / JetBrains
+############################
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+############################
+# Node / React / Vite
+############################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite build output
+dist/
+dist-ssr/
+
+# Vite cache
+.vite/
+
+############################
+# Environment Variables
+############################
+.env
+.env.*
+!.env.example
+
+############################
+# TypeScript
+############################
+*.tsbuildinfo
+
+############################
+# Spring Boot / Java
+############################
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+
+# Java compiled files
+*.class
+
+# JVM crash logs
+hs_err_pid*
+
+############################
+# Spring Boot Specific
+############################
+spring.log
+logs/
+
+# Local-only configs (remove if you want to commit them)
+# application-local.yml
+# application-local.properties
+application.properties
+
+############################
+# Testing / Coverage
+############################
+coverage/
+jacoco.exec
+
+############################
+# Misc
+############################
+*.orig
+*.bak
+*.rej
