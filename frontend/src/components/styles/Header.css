@@ -1,0 +1,44 @@
+.header-container
+{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.6em 1.5em;
+    border-bottom: 2px solid maroon;
+    background-color: white;
+    gap: 0.5em;
+}
+
+.header-container a
+{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.header-container img
+{
+    width: 3em;
+}
+
+.site-name h1
+{
+    font-size: 1.6rem;
+    color: maroon;
+}
+
+.site-name h2
+{
+    font-size: 0.8rem;
+    color: goldenrod;
+}
+
+.header-buttons
+{
+    display: flex;
+    margin-left: auto;
+    gap: 0.5em;
+}
