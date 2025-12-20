@@ -12,6 +12,7 @@ Thumbs.db
 ############################
 # VS Code
 ############################
+.vscode/
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
@@ -89,7 +90,7 @@ logs/
 # Local-only configs (remove if you want to commit them)
 # application-local.yml
 # application-local.properties
-application.properties
+# application.properties
 
 ############################
 # Testing / Coverage
