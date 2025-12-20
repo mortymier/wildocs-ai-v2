@@ -1,0 +1,49 @@
+.btn-gold, .btn-maroon, .btn-white
+{
+    height: fit-content;
+    width: fit-content;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-gold
+{
+    border: 1px solid goldenrod;
+    background-color: goldenrod;
+    color: white;
+}
+
+.btn-maroon
+{
+    border: 1px solid maroon;
+    background-color: maroon;
+    color: white;
+}
+
+.btn-white
+{
+    border: 1px solid maroon;
+    background-color: white;
+    color: maroon;
+}
+
+.btn-gold:hover
+{
+    border-color: maroon;
+    color: maroon;
+}
+
+.btn-maroon:hover
+{
+    border-color: goldenrod;
+    color: goldenrod;
+}
+
+.btn-white:hover
+{
+    background-color: maroon;
+    color: white;
+}
