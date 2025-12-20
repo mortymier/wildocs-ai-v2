@@ -87,10 +87,8 @@ hs_err_pid*
 spring.log
 logs/
 
-# Local-only configs (remove if you want to commit them)
-# application-local.yml
-# application-local.properties
-# application.properties
+# Spring Boot Configuration (uncomment to commit)
+application.properties
 
 ############################
 # Testing / Coverage
