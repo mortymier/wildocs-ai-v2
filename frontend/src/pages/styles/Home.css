@@ -1,0 +1,237 @@
+.home-container
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+.hero
+{
+    display: flex;
+    padding: 0 2rem;
+    background-color: #b92e34;
+    background-image: linear-gradient(326deg, #b92e34 0%, #3d0c02 74%);
+    height: 28rem;
+}
+
+.hero div:first-child
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding: 6rem;
+}
+
+.hero div:first-child h1
+{
+    color: goldenrod;
+    font-size: 3em;
+}
+
+.hero div:first-child h2
+{
+    margin-bottom: 0.5em;
+    color: white;
+    font-size: 1.3em;
+}
+
+.hero div:first-child hr
+{
+    width: 100%;
+    margin-bottom: 1em;
+    border: 1px solid goldenrod;
+}
+
+.hero div:first-child p
+{
+    margin-bottom: 2em;
+    color: #EEE;
+    font-size: 1em;
+    line-height: 1.75em;
+}
+
+.hero div:last-child
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding: 1rem;
+}
+
+.hero div:last-child img
+{
+    width: 40vw;
+    padding: 1em;
+    border: 1px solid gray;
+    border-radius: 1em;
+    background-color: #333;
+    align-self: center;
+}
+
+.features
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 5rem;
+    align-items: center;
+}
+
+.features h2
+{
+    margin-bottom: 0.2em;
+    font-size: 1.5em;
+    color: maroon;
+}
+
+.features p
+{
+    font-size: 1em;
+    text-align: center;
+}
+
+.feature-card-container
+{
+    display: flex;
+    width: 100%;
+    margin-top: 4em;
+    justify-content: center;
+    gap: 3em;
+}
+
+.feature-card
+{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 18em;
+    padding: 2em;
+    border: 1px solid maroon;
+    border-top: 10px solid maroon;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    gap: 1em;
+}
+
+.feature-card:hover
+{
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(-1em);
+}
+
+.feature-card svg
+{
+    fill: goldenrod;
+    width: 2.5em;
+    height: auto;
+}
+
+.feature-card h3
+{
+    font-size: 1.1em;
+    color: maroon;
+}
+
+.feature-card p
+{
+    color: #333;
+    line-height: 1.5em;
+    text-align: left;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px)
+{
+    .hero
+    {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .hero div:first-child,
+    .hero div:last-child
+    {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .hero div:last-child img
+    {
+        width: 80%;
+    }
+
+    .feature-card-container
+    {
+        flex-wrap: wrap;
+        gap: 2em;
+    }
+
+    .feature-card
+    {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .hero div:first-child h1
+    {
+        font-size: 2.5em;
+    }
+
+    .hero div:first-child h2
+    {
+        font-size: 1.2em;
+    }
+
+    .hero div:first-child p
+    {
+        font-size: 0.9em;
+    }
+
+    .feature-card
+    {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .hero
+    {
+        padding: 1rem;
+    }
+
+    .hero div:first-child h1
+    {
+        font-size: 2em;
+    }
+
+    .hero div:first-child h2
+    {
+        font-size: 1em;
+    }
+
+    .hero div:first-child p
+    {
+        font-size: 0.8em;
+    }
+
+    .hero div:last-child img
+    {
+        width: 100%;
+    }
+
+    .features h2
+    {
+        font-size: 1.2em;
+    }
+
+    .features p
+    {
+        font-size: 0.9em;
+    }
+}
