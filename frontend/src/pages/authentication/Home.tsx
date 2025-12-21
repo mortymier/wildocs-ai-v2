@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Header from '../../components/layout/Header.tsx';
 import Footer from '../../components/layout/Footer.tsx';
 import GoldButton from '../../components/buttons/GoldButton.tsx';
@@ -48,18 +47,18 @@ export default function Home()
                         </div>
                         <div className="feature-card">
                             <IoPeople/>
-                            <h3> Team Collaboration </h3>
+                            <h3> Class Collaboration </h3>
                             <p>
-                                Enable seamless collaboration with real-time commenting,
-                                version control, and team-based review workflows.
+                                Enable seamless class collaboration with real-time SDD submissions,
+                                feedbacking, and evaluation.
                             </p>
                         </div>
                         <div className="feature-card">
                             <FaChartPie/>
                             <h3> Detailed Evaluation </h3>
                             <p>
-                                Generate comprehensive evaluation reports with scoring metrics,
-                                improvement suggestions, and compliance tracking.
+                                Receive comprehensive evaluation reports with scoring metrics,
+                                error identification, and improvement suggestions.
                             </p>
                         </div>
                     </div>

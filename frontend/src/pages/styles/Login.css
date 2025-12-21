@@ -1,0 +1,175 @@
+.login-container
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    padding: 2rem 0;
+    padding-bottom: 5rem;
+    align-items: center;
+    justify-items: center;
+    background-color: #EEE;
+}
+
+.login-container p
+{
+    margin-bottom: 2em;
+    font-size: 1rem;
+}
+
+.login-extras
+{
+    display: flex;
+    width: 90%;
+    margin-bottom: 2em;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.login-extras input
+{
+    margin: 0;
+    padding: 0;
+    accent-color: maroon;
+    width: 1.1em;
+}
+
+.login-extras span, .login-extras-2 span
+{
+    font-size: 0.8em;
+}
+
+.login-extras a
+{
+    margin-left: auto;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-decoration: none;
+    color: maroon;
+}
+
+.btn-maroon
+{
+    width: 90%;
+    margin-bottom: 2em;
+}
+
+.login-extras-2
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.login-extras-2 a
+{
+    font-size: 0.8em;
+    font-weight: 600;
+    text-decoration: none;
+    color: maroon;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px)
+{
+    .login-container
+    {
+        padding: 1.5rem 0;
+    }
+
+    .login-container p
+    {
+        font-size: 0.9rem;
+    }
+
+    .login-extras, .login-extras-2
+    {
+        width: 90%;
+        gap: 0.4em;
+    }
+
+    .login-extras span, .login-extras-2 span
+    {
+        font-size: 0.75em;
+    }
+
+    .login-extras a, .login-extras-2 a
+    {
+        font-size: 0.75em;
+    }
+
+    .btn-maroon
+    {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .login-container
+    {
+        padding: 1rem 0;
+    }
+
+    .login-container p
+    {
+        font-size: 0.85rem;
+    }
+
+    .login-extras, .login-extras-2
+    {
+        width: 90%;
+        gap: 0.3em;
+    }
+
+    .login-extras span, .login-extras-2 span
+    {
+        font-size: 0.7em;
+    }
+
+    .login-extras a, .login-extras-2 a
+    {
+        font-size: 0.7em;
+    }
+
+    .btn-maroon
+    {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .login-container
+    {
+        padding: 0.8rem 0;
+    }
+
+    .login-container p
+    {
+        font-size: 0.8rem;
+    }
+
+    .login-extras, .login-extras-2
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2em;
+    }
+
+    .login-extras span, .login-extras-2 span
+    {
+        font-size: 0.65em;
+    }
+
+    .login-extras a, .login-extras-2 a
+    {
+        font-size: 0.65em;
+    }
+
+    .btn-maroon
+    {
+        width: 90%;
+    }
+}

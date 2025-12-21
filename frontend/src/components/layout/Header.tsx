@@ -13,8 +13,8 @@ export default function Header()
                 <h2> AI-Powered SDD Evaluator </h2>
             </Link>
             <div className="header-buttons">
-                <Link to="/" className="btn-white"> Login </Link>
-                <Link to="/" className="btn-maroon"> Register </Link>
+                <Link to="/login" className="btn-white"> Login </Link>
+                <Link to="/register" className="btn-maroon"> Register </Link>
             </div>
         </header>
     );
