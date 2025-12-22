@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/authentication/Home.tsx';
 import Login from './pages/authentication/Login.tsx';
 import Register from './pages/authentication/Register.tsx';
+import Verify from './pages/authentication/Verify.tsx';
 import Test from './pages/authentication/Test.tsx';
 
 export default function App()
@@ -15,6 +16,7 @@ export default function App()
                 <Route index element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/verify" element={<Verify/>}/>
                 <Route path="/test" element={<Test/>}/>
             </Routes>
         </BrowserRouter>
