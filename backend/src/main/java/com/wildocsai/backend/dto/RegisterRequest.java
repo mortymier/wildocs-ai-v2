@@ -2,6 +2,7 @@ package com.wildocsai.backend.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class RegisterRequest
     private String lastName;
 
     @NotBlank(message = "ID number cannot be blank")
+    @Pattern(regexp = "^[0-9-]+$", message = "ID number can only contain numbers and dashes")
     private String idNum;
 
     @NotBlank(message = "Email cannot be blank")
