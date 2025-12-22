@@ -1,18 +1,59 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import MaroonButton from '../../components/buttons/MaroonButton.tsx';
-import Footer from '../../components/layout/Footer.tsx';
-import wildocsai_logo from '../../assets/wildocsai_logo.svg';
+import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineMail } from 'react-icons/hi';
 import { TbLockPassword } from 'react-icons/tb';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { TbEyeClosed } from 'react-icons/tb';
+import { login } from '../../api/AuthService.ts';
+import type { LoginForm } from '../../types.ts';
+import MaroonButton from '../../components/buttons/MaroonButton.tsx';
+import Footer from '../../components/layout/Footer.tsx';
+import wildocsai_logo from '../../assets/wildocsai_logo.svg';
 import '../styles/Login.css';
 import '../styles/Form.css';
 
 export default function Login()
 {
-    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
+    const [formData, setFormData] = useState<LoginForm>
+    ({
+        email: '',
+        password: ''
+    }); 
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) =>
+    {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try
+        {
+            const loginResponse = await login(formData);
+
+            // Add redirection upon successful login
+            if(loginResponse)
+                console.log(loginResponse);
+        }
+        catch(error: any)
+        {
+            setError(error.message);
+            console.log(error.message);
+        }
+        finally
+        {
+            setLoading(false);
+        }
+    };
 
     const togglePasswordVisibility = () =>
     {
@@ -22,7 +63,7 @@ export default function Login()
     return (
         <>
             <main className="login-container">
-                <form className="form-container">
+                <form className="form-container" onSubmit={handleSubmit}>
                     <Link to="/"> <img src={wildocsai_logo} alt="Wildocs AI Logo"/> </Link>
                     <Link to="/" className="form-header">  
                         <h2> WILDOCS AI </h2>
@@ -40,6 +81,8 @@ export default function Login()
                         type="email"
                         placeholder="Enter your email"
                         className="form-input"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                     />
                     {/* Password */}
@@ -54,6 +97,8 @@ export default function Login()
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter your password"
                             className="form-input"
+                            value={formData.password}
+                            onChange={handleChange}
                             required
                         />
                         {showPassword ?
@@ -66,7 +111,8 @@ export default function Login()
                         <input type="checkbox"/> <span> Remember me </span>
                         <Link to="/"> Forgot password? </Link>
                     </div>
-                    <MaroonButton btnText={"Login"} btnType={"submit"}/>
+                    {error && <div className="form-error">{error}</div>}
+                    <MaroonButton btnText={"Login"} btnType={"submit"} disabled={loading}/>
                     <div className="login-extras-2">
                         <span> Don't have an account? </span>
                         <Link to="/register"> Sign up here </Link>
