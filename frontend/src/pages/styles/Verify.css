@@ -28,6 +28,8 @@
 {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-items: center;
     width: 35%;
     padding: 3em 2em;
     border: 1px solid goldenrod;
@@ -39,6 +41,7 @@
 
 .verify-container label
 {
+    width: 90%;
     font-weight: 600;
     font-size: 1em;
     color: maroon;
@@ -47,6 +50,7 @@
 
 .verify-container input
 {
+    width: 90%;
     padding: 0.6em 1em;
     margin-bottom: 3em;
     border: 1px solid gray;
@@ -63,13 +67,14 @@
 
 .verify-container .btn-gold
 {
-    width: 100%;
+    width: 90%;
     align-self: center;
     margin-bottom: 2em;
 }
 
 .verify-container form div
 {
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,4 +92,107 @@
     font-weight: 600;
     color: maroon;
     cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px)
+{
+    .verify-container
+    {
+        padding: 2rem 0;
+    }
+
+    .verify-container h1
+    {
+        font-size: 1.4rem;
+    }
+
+    .verify-container p
+    {
+        font-size: 0.95rem;
+    }
+
+    .verify-container form
+    {
+        width: 50%;
+        padding: 2.5em 1.5em;
+    }
+
+    .verify-container input
+    {
+        font-size: 0.95em;
+    }
+
+    .verify-container form div span
+    {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .verify-container
+    {
+        padding: 1.5rem 0;
+    }
+
+    .verify-container h1
+    {
+        font-size: 1.3rem;
+    }
+
+    .verify-container p
+    {
+        font-size: 0.9rem;
+    }
+
+    .verify-container form
+    {
+        width: 70%;
+        padding: 2em 1em;
+    }
+
+    .verify-container input
+    {
+        font-size: 0.9em;
+    }
+
+    .verify-container form div span
+    {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .verify-container
+    {
+        padding: 1rem 0;
+    }
+
+    .verify-container h1
+    {
+        font-size: 1.2rem;
+    }
+
+    .verify-container p
+    {
+        font-size: 0.85rem;
+    }
+
+    .verify-container form
+    {
+        width: 90%;
+        padding: 1.5em 0.8em;
+    }
+
+    .verify-container input
+    {
+        font-size: 0.85em;
+    }
+
+    .verify-container form div span
+    {
+        font-size: 0.75em;
+    }
 }
