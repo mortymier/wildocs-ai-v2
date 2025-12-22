@@ -47,3 +47,10 @@
     background-color: maroon;
     color: white;
 }
+
+.btn-gold:disabled, .btn-maroon:disabled, .btn-white:disabled
+{
+    border-color: #ccc;
+    background-color: #ccc;
+    color: #666;
+}

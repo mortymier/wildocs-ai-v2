@@ -13,9 +13,9 @@ export default function Test()
             <title> Test - Wildocs AI </title>
             <Header/>
             <main className='test-container'>
-                <GoldButton btnText="Gold"/>
-                <MaroonButton btnText="Maroon"/>
-                <WhiteButton btnText="White"/>
+                <GoldButton btnText="Gold" disabled={true}/>
+                <MaroonButton btnText="Maroon" disabled={true}/>
+                <WhiteButton btnText="White" disabled={true}/>
             </main>
         </>
     );
