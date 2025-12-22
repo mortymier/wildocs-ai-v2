@@ -1,0 +1,193 @@
+.register-container
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    padding: 2rem 0;
+    padding-bottom: 5rem;
+    align-items: center;
+    justify-items: center;
+    background-color: #EEE;
+}
+
+.register-container p
+{
+    margin-bottom: 2em;
+    font-size: 1rem;
+}
+
+.register-container hr
+{
+    width: 90%;
+    margin-bottom: 2em;
+    border-color: goldenrod;
+}
+
+.terms-conditions
+{
+    display: flex;
+    margin-bottom: 2em;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.terms-conditions input
+{
+    margin: 0;
+    accent-color: maroon;
+    width: 1.1em;
+}
+
+.terms-conditions span
+{
+    font-size: 0.9em;
+}
+
+.register-buttons
+{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+    gap: 1em;
+}
+
+.register-buttons .btn-gold, .register-buttons .btn-maroon
+{
+    width: 50%;
+}
+
+.register-extras
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.register-extras span
+{
+    font-size: 0.9em;
+}
+
+.register-extras a
+{
+    font-size: 0.9em;
+    font-weight: 600;
+    text-decoration: none;
+    color: maroon;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px)
+{
+    .register-container
+    {
+        padding: 1.5rem 0;
+    }
+
+    .register-container p
+    {
+        font-size: 0.9rem;
+    }
+
+    .register-container hr
+    {
+        width: 95%;
+    }
+
+    .terms-conditions span, .register-extras span
+    {
+        font-size: 0.85em;
+    }
+
+    .register-extras a
+    {
+        font-size: 0.85em;
+    }
+
+    .register-buttons
+    {
+        flex-direction: column;
+        gap: 0.8em;
+    }
+
+    .register-buttons .btn-gold, .register-buttons .btn-maroon
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .register-container
+    {
+        padding: 1rem 0;
+    }
+
+    .register-container p
+    {
+        font-size: 0.85rem;
+    }
+
+    .register-container hr
+    {
+        width: 100%;
+    }
+
+    .terms-conditions span, .register-extras span
+    {
+        font-size: 0.8em;
+    }
+
+    .register-extras a
+    {
+        font-size: 0.8em;
+    }
+
+    .register-buttons
+    {
+        flex-direction: column;
+        gap: 0.6em;
+    }
+
+    .register-buttons .btn-gold, .register-buttons .btn-maroon
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .register-container
+    {
+        padding: 0.8rem 0;
+    }
+
+    .register-container p
+    {
+        font-size: 0.8rem;
+    }
+
+    .terms-conditions span, .register-extras span
+    {
+        font-size: 0.75em;
+    }
+
+    .register-extras a
+    {
+        font-size: 0.75em;
+    }
+
+    .register-buttons
+    {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .register-buttons .btn-gold, .register-buttons .btn-maroon
+    {
+        width: 100%;
+    }
+}
