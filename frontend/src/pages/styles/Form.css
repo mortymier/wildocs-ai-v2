@@ -113,6 +113,26 @@
     color: goldenrod;
 }
 
+.form-error
+{
+    margin-bottom: 2em;
+    color: red;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    width: 90%;
+}
+
+.form-success
+{
+    margin-bottom: 2em;
+    color: green;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    width: 90%;
+}
+
 /* Responsive styles */
 @media (max-width: 1024px)
 {
