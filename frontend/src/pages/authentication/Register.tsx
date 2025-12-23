@@ -82,6 +82,7 @@ export default function Register()
 
     return (
         <>
+            <title> Register - Wildocs AI </title>
             <main className="register-container">
                 <form className="form-container" onSubmit={handleSubmit}>
                     <Link to="/"> <img src={wildocsai_logo} alt="Wildocs AI Logo"/> </Link>

@@ -45,6 +45,7 @@ export default function Verify()
 
     return (
         <>
+            <title> Verify Email - Wildocs AI </title>
             <Header/>
             <main className="verify-container">
                 <h1> Verify Your Email </h1>

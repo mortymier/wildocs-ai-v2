@@ -62,6 +62,7 @@ export default function Login()
 
     return (
         <>
+            <title> Login - Wildocs AI </title>
             <main className="login-container">
                 <form className="form-container" onSubmit={handleSubmit}>
                     <Link to="/"> <img src={wildocsai_logo} alt="Wildocs AI Logo"/> </Link>
