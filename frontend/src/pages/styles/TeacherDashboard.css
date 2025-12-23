@@ -1,17 +1,8 @@
-.test-container
-{
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.test-main
+.teacher-dashboard-container
 {
     display: flex;
     flex-direction: column;
     width: 80%;
     padding: 2em;
-    gap: 1vw;
     background-color: #eee;
 }
-
