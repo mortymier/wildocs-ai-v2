@@ -78,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
+    gap: 0.3em;
 }
 
 .verify-container form div span
@@ -92,6 +92,26 @@
     font-weight: 600;
     color: maroon;
     cursor: pointer;
+}
+
+.verify-container .form-error
+{
+    margin-bottom: 2em;
+    color: red;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    width: 90%;
+}
+
+.verify-container .form-success
+{
+    margin-bottom: 2em;
+    color: green;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    width: 90%;
 }
 
 /* Responsive styles */
