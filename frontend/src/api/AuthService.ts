@@ -51,7 +51,7 @@ export const register = async(formData: RegisterForm, role: string) =>
 
         throw new Error('Registration failed. Please try again.');
     }
-}
+};
 
 
 export const verifyEmail = async(code: string) =>
@@ -74,4 +74,28 @@ export const verifyEmail = async(code: string) =>
 
         throw new Error('Email verification failed. Please try again.');
     }
-}
+};
+
+
+export const logout = async() =>
+{
+    try
+    {
+        const response = await axios.post
+        (
+            `http://localhost:8080/api/auth/logout`, {}, { withCredentials: true }
+        );
+
+        localStorage.removeItem('authUser');
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if (error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Logout failed. Please try again.');
+    }
+};
