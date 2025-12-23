@@ -93,7 +93,7 @@ public class EmailService
 
         return new VerificationResponse
         (
-            "Email verification successful!",
+            "Email verification successful! Redirecting to login...",
             user.getEmail(),
             user.isVerified(),
             verificationCodeEntity.getVerifiedAt()
