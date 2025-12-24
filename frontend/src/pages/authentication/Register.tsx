@@ -62,8 +62,14 @@ export default function Register()
         try
         {
             const registerResponse = await register(formData, role);
+            console.info(registerResponse);
             setSuccess(registerResponse);
-            console.log(registerResponse);
+
+            setTimeout(() =>
+            {
+                navigate('/verify');
+
+            }, 3500);
         }
         catch(error: any)
         {
@@ -149,7 +155,7 @@ export default function Register()
                     {/* ID Number */}
                     <div className="form-label">
                         <LuIdCard/>
-                        <label htmlFor="idNumber"> ID Number </label>
+                        <label htmlFor="idNum"> ID Number </label>
                     </div>
                     <input
                         id="idNum"
@@ -175,6 +181,7 @@ export default function Register()
                         name="email"
                         type="email"
                         placeholder="Enter your email"
+                        autoComplete="on"
                         className="form-input"
                         value={formData.email}
                         onChange={handleChange}

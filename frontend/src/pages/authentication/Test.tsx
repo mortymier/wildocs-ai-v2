@@ -14,11 +14,11 @@ export default function Test()
     return (
         <>
             <title> Test - Wildocs AI </title>
-            <UserHeader/>
+            <Header/>
             <div className='test-container'>
                 <TeacherSideBar/>
                 <main className='test-main'>
-                
+
                 </main>
             </div>
             <Footer/>

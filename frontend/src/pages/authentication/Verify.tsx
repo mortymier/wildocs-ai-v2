@@ -24,14 +24,14 @@ export default function Verify()
         try
         {
             const verificationResponse = await verifyEmail(code);
-            console.log(verificationResponse);
+            console.info(verificationResponse);
             setSuccess(verificationResponse.message);
 
             setTimeout(() =>
             {
                 navigate('/login');
 
-            }, 3000);
+            }, 3500);
         }
         catch(error: any)
         {

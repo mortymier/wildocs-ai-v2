@@ -39,15 +39,29 @@ export default function Login()
         try
         {
             const loginResponse = await login(formData);
+            console.info(loginResponse);
+            localStorage.setItem('authenticatedUser', JSON.stringify(loginResponse));
 
-            // Add redirection upon successful login
-            if(loginResponse)
-                console.log(loginResponse);
+            switch(loginResponse.role)
+            {
+                case 'TEACHER':
+                    navigate('/teacher/dashboard', { replace: true });
+                    break;
+
+                case 'STUDENT':
+                    navigate('/student/dashboard', { replace: true });
+                    break;
+
+                // Add case for ADMIN role 
+
+                default:
+                    setError('Invalid user role');
+                    localStorage.removeItem('authenticatedUser');
+            }
         }
         catch(error: any)
         {
             setError(error.message);
-            console.log(error.message);
         }
         finally
         {
@@ -81,6 +95,7 @@ export default function Login()
                         name="email"
                         type="email"
                         placeholder="Enter your email"
+                        autoComplete="on"
                         className="form-input"
                         value={formData.email}
                         onChange={handleChange}
