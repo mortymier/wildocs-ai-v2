@@ -1,6 +1,6 @@
-import UserHeader from '../../components/layout/UserHeader';
-import TeacherSideBar from '../../components/layout/TeacherSideBar';
-import Footer from '../../components/layout/Footer';
+import UserHeader from '../../components/layout/UserHeader.tsx';
+import TeacherSideBar from '../../components/layout/TeacherSideBar.tsx';
+import Footer from '../../components/layout/Footer.tsx';
 import '../styles/TeacherDashboard.css';
 import '../styles/TeacherLayout.css';
 
