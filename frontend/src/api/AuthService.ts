@@ -86,7 +86,7 @@ export const logout = async() =>
             `http://localhost:8080/api/auth/logout`, {}, { withCredentials: true }
         );
 
-        localStorage.removeItem('authUser');
+        localStorage.removeItem('authenticatedUser');
         return response.data;
     }
     catch(error: any)
@@ -99,3 +99,26 @@ export const logout = async() =>
         throw new Error('Logout failed. Please try again.');
     }
 };
+
+
+export const getCurrentUser = async() =>
+{
+    try
+    {
+        const response = await axios.get
+        (
+            `http://localhost:8080/api/auth/me`, { withCredentials: true }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if(error.response?.status === 401)
+        {
+            throw new Error('Could not retrieve user details. Please sign in first');
+        }
+
+        throw new Error('Fetching user failed. Please try again.');
+    }
+}
