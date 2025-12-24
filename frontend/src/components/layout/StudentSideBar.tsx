@@ -1,0 +1,52 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { MdOutlineSpaceDashboard } from 'react-icons/md';
+import { FaChalkboardTeacher } from 'react-icons/fa';
+import { TiDocument } from 'react-icons/ti';
+import { FaRegSquarePlus } from 'react-icons/fa6';
+import { logout } from '../../api/AuthService';
+import WhiteButton from '../buttons/WhiteButton';
+import '../styles/Sidebar.css';
+
+export default function StudentSideBar()
+{
+    const navigate = useNavigate();
+
+    const handleLogout = async() =>
+    {
+        try
+        {
+            const logoutResponse = await logout();
+            console.log(logoutResponse);
+            navigate('/login', { replace: true });
+        }
+        catch(error: any)
+        {
+            console.error(error.message);
+            alert(error.message);
+        }
+    };
+
+    return (
+        <nav className="sidebar-container">
+            <ul>
+                <Link to="/student/dashboard">
+                    <MdOutlineSpaceDashboard/> 
+                    <li> Dashboard </li> 
+                </Link>
+                <Link to="/student/dashboard">
+                    <TiDocument/>
+                    <li> Submissions </li> 
+                </Link>
+                <Link to="/student/dashboard">
+                    <FaChalkboardTeacher/>
+                    <li> Classes </li> 
+                </Link>
+                <Link to="/student/dashboard">
+                    <FaRegSquarePlus/>
+                    <li> Join Class </li> 
+                </Link>
+            </ul>
+            <WhiteButton btnText={"Logout"} btnType={"button"} clickHandler={handleLogout}/>
+        </nav>
+    );
+}
