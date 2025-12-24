@@ -1,9 +1,6 @@
 package com.wildocsai.backend.controller;
 
-import com.wildocsai.backend.dto.LoginRequest;
-import com.wildocsai.backend.dto.LoginResponse;
-import com.wildocsai.backend.dto.RegisterRequest;
-import com.wildocsai.backend.dto.VerificationResponse;
+import com.wildocsai.backend.dto.*;
 import com.wildocsai.backend.entity.UserRole;
 import com.wildocsai.backend.security.JwtUtil;
 import com.wildocsai.backend.service.AuthService;
@@ -91,6 +88,20 @@ public class AuthController
         catch(RuntimeException e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser()
+    {
+        try
+        {
+            UserDetailsResponse response = authService.getCurrentUser();
+            return ResponseEntity.ok(response);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }
 }

@@ -3,10 +3,13 @@ package com.wildocsai.backend.service;
 import com.wildocsai.backend.dto.LoginRequest;
 import com.wildocsai.backend.dto.LoginResponse;
 import com.wildocsai.backend.dto.RegisterRequest;
+import com.wildocsai.backend.dto.UserDetailsResponse;
 import com.wildocsai.backend.entity.UserEntity;
 import com.wildocsai.backend.entity.UserRole;
 import com.wildocsai.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +39,14 @@ public class AuthService
         }
 
         return new LoginResponse
-        (user.getFirstName(), user.getLastName(), user.getEmail(), user.getIdNum(), user.getRole().name());
+        (
+            "Login successful!", 
+            user.getFirstName(), 
+            user.getLastName(), 
+            user.getEmail(), 
+            user.getIdNum(),
+            user.getRole().name()
+        );
     }
 
     public String register(RegisterRequest request, UserRole role)
@@ -65,7 +75,32 @@ public class AuthService
         // Save user in database
         userRepository.save(user);
 
-        return "Registration successful for " + user.getFirstName() + " " + user.getLastName() + "!"
+        return "Registration successful for " + 
+                user.getFirstName() + " " + user.getLastName() + "!"
                 + " Please check your email for verification.";
+    }
+
+    public UserDetailsResponse getCurrentUser()
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication == null || !authentication.isAuthenticated())
+        {
+            throw new IllegalStateException("User is not authenticated");
+        }
+
+        String email = authentication.getName();
+
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalStateException("Authenticated user is not found"));
+
+        return new UserDetailsResponse
+        (
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmail(),
+            user.getIdNum(),
+            user.getRole().name()
+        );
     }
 }
