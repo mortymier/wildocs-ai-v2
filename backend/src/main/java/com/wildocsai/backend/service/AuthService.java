@@ -8,6 +8,7 @@ import com.wildocsai.backend.entity.UserEntity;
 import com.wildocsai.backend.entity.UserRole;
 import com.wildocsai.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -102,5 +103,22 @@ public class AuthService
             user.getIdNum(),
             user.getRole().name()
         );
+    }
+
+    public String getAuthenticationStatus()
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String response;
+
+        if(authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken)
+        {
+            response = "Not authenticated";
+        }
+        else
+        {
+            response = "Authenticated";
+        }
+
+        return response;
     }
 }

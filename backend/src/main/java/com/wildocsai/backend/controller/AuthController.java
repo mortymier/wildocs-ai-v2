@@ -104,4 +104,18 @@ public class AuthController
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }
+
+    @GetMapping("/check")
+    public ResponseEntity<?> getAuthenticationStatus()
+    {
+        try
+        {
+            String response = authService.getAuthenticationStatus();
+            return ResponseEntity.ok(response);
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occured while checking authentication status");
+        }
+    }
 }
