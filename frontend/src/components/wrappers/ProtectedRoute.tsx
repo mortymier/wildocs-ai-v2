@@ -28,7 +28,7 @@ export default function ProtectedRoute({ allowedRoles }: ProtectRouteRoles)
             {
                 setLoading(false);
             }
-        }
+        };
 
         verifyUser();
 

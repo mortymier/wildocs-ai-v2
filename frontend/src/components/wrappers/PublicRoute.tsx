@@ -1,14 +1,57 @@
+import { useState, useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-
+import { getAuthStatus, getCurrentUser } from '../../api/AuthService';
+import type { AuthenticatedUser } from '../../types';
 export default function PublicRoute()
 {
-    const storedUser = localStorage.getItem('authenticatedUser');
+    const [userDetails, setUserDetails] = useState<AuthenticatedUser | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    if(storedUser)
+    useEffect(() =>
     {
-        const userDetails = JSON.parse(storedUser);
-        
-        console.warn('Cannot access public route. Please log out first');
+        const checkAuthentication = async() =>
+        {
+            try
+            {
+                const checkResponse = await getAuthStatus();
+                
+                if(checkResponse === 'Authenticated')
+                {
+                    const userData = await getCurrentUser();
+                    setUserDetails(userData);
+                }
+            }
+            catch(error: any)
+            {
+                console.error(error.message);
+            }
+            finally
+            {
+                setLoading(false);
+            }
+        };
+
+        checkAuthentication();
+
+    }, []);
+
+    if(loading)
+    {
+        return (
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                height: '100vh' 
+            }}>
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
+    if(userDetails)
+    {
+        console.warn('Cannot access public page. Please log out first');
 
         switch(userDetails.role)
         {

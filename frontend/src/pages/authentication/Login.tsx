@@ -40,7 +40,6 @@ export default function Login()
         {
             const loginResponse = await login(formData);
             console.info(loginResponse);
-            localStorage.setItem('authenticatedUser', JSON.stringify(loginResponse));
 
             switch(loginResponse.role)
             {
@@ -56,7 +55,6 @@ export default function Login()
 
                 default:
                     setError('Invalid user role');
-                    localStorage.removeItem('authenticatedUser');
             }
         }
         catch(error: any)

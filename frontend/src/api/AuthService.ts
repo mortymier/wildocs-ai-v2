@@ -86,7 +86,6 @@ export const logout = async() =>
             `http://localhost:8080/api/auth/logout`, {}, { withCredentials: true }
         );
 
-        localStorage.removeItem('authenticatedUser');
         return response.data;
     }
     catch(error: any)
@@ -121,4 +120,26 @@ export const getCurrentUser = async() =>
 
         throw new Error('Fetching user failed. Please try again.');
     }
-}
+};
+
+export const getAuthStatus = async() =>
+{
+    try
+    {
+        const response = await axios.get
+        (
+            `http://localhost:8080/api/auth/check`, { withCredentials: true }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if (error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Checking authentication status failed. Please try again.');
+    }
+};
