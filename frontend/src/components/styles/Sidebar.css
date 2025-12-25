@@ -35,6 +35,7 @@
 .sidebar-container svg
 {
     fill: maroon;
+    stroke: maroon;
     width: 1.5em;
     height: auto;
     flex-shrink: 0;
@@ -52,6 +53,7 @@
 .sidebar-container a:hover svg
 {
     fill: goldenrod;
+    stroke: goldenrod;
 }
 
 .sidebar-container .btn-white

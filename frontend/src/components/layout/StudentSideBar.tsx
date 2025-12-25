@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { FaChalkboardTeacher } from 'react-icons/fa';
-import { TiDocument } from 'react-icons/ti';
-import { FaRegSquarePlus } from 'react-icons/fa6';
+import { IoDocumentTextOutline } from 'react-icons/io5';
+import { IoEnterOutline } from 'react-icons/io5';
 import { logout } from '../../api/AuthService';
 import WhiteButton from '../buttons/WhiteButton';
 import '../styles/Sidebar.css';
@@ -34,15 +34,15 @@ export default function StudentSideBar()
                     <li> Dashboard </li> 
                 </Link>
                 <Link to="/student/dashboard">
-                    <TiDocument/>
-                    <li> Submissions </li> 
+                    <IoDocumentTextOutline/>
+                    <li> View Submissions </li> 
                 </Link>
                 <Link to="/student/dashboard">
                     <FaChalkboardTeacher/>
-                    <li> Classes </li> 
+                    <li> View Classes </li> 
                 </Link>
                 <Link to="/student/dashboard">
-                    <FaRegSquarePlus/>
+                    <IoEnterOutline/>
                     <li> Join Class </li> 
                 </Link>
             </ul>
