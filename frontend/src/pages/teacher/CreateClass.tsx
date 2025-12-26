@@ -58,7 +58,7 @@ export default function CreateClass()
 
             setTimeout(() =>
             {
-                navigate('/teacher/dashboard');
+                navigate('/teacher/classes');
 
             }, 3500);
         }
