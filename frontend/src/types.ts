@@ -34,3 +34,12 @@ export type ProtectRouteRoles =
 
 
 export type AuthorizationState = 'loading' | 'authorized' | 'unauthorized' | 'forbidden';
+
+
+export type CreateClassForm = 
+{
+    className: string;
+    schoolYear: string;
+    semester: string;
+    section: string;
+};
