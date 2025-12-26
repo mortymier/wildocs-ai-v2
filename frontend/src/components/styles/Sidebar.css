@@ -42,14 +42,14 @@
     transition: fill 0.3s ease;
 }
 
-.sidebar-container a:first-child, 
+.sidebar-container .current, 
 .sidebar-container a:hover
 {
     background-color: maroon;
     color: goldenrod;
 }
 
-.sidebar-container a:first-child svg, 
+.sidebar-container .current svg, 
 .sidebar-container a:hover svg
 {
     fill: goldenrod;

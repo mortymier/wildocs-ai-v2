@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { FaChalkboardTeacher } from 'react-icons/fa';
 import { IoDocumentTextOutline } from 'react-icons/io5';
@@ -10,6 +10,7 @@ import '../styles/Sidebar.css';
 export default function TeacherSideBar()
 {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = async() =>
     {
@@ -29,19 +30,31 @@ export default function TeacherSideBar()
     return (
         <nav className="sidebar-container">
             <ul>
-                <Link to="/teacher/dashboard">
+                <Link 
+                    to="/teacher/dashboard"
+                    className={location.pathname === "/teacher/dashboard" ? "current" : ""}
+                >
                     <MdOutlineSpaceDashboard/> 
                     <li> Dashboard </li> 
                 </Link>
-                <Link to="/teacher/dashboard">
+                <Link 
+                    to="/teacher/dashboard"
+                    className={location.pathname === "/teacher/submissions" ? "current" : ""}
+                >
                     <IoDocumentTextOutline/>
                     <li> View Submissions </li> 
                 </Link>
-                <Link to="/teacher/dashboard">
+                <Link 
+                    to="/teacher/dashboard"
+                    className={location.pathname === "/teacher/classes" ? "current" : ""}
+                >
                     <FaChalkboardTeacher/>
                     <li> View Classes </li> 
                 </Link>
-                <Link to="/teacher/dashboard">
+                <Link 
+                    to="/teacher/create"
+                    className={location.pathname === "/teacher/create" ? "current" : ""}
+                >
                     <FaRegSquarePlus/>
                     <li> Create Class </li> 
                 </Link>
