@@ -43,3 +43,13 @@ export type CreateClassForm =
     semester: string;
     section: string;
 };
+
+
+export type ClassCardDetails = 
+{
+    className: string;
+    schoolYear: string;
+    semester: string;
+    section: string;
+    joinCode: string;
+}

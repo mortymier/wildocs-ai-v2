@@ -45,7 +45,7 @@ export default function TeacherSideBar()
                     <li> View Submissions </li> 
                 </Link>
                 <Link 
-                    to="/teacher/dashboard"
+                    to="/teacher/classes"
                     className={location.pathname === "/teacher/classes" ? "current" : ""}
                 >
                     <FaChalkboardTeacher/>

@@ -1,0 +1,94 @@
+.view-classes-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2em 0;
+    background-color: #eee;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.view-classes-header
+{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+    border: 1px solid maroon;
+    border-left: 10px solid maroon;
+    border-right: 10px solid maroon;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.view-classes-header h2
+{
+    color: maroon;
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+}
+
+.view-classes-header p
+{
+    font-size: 1em;
+}
+
+.add-class
+{
+    display: flex;
+    border: 4px dashed gray;
+    border-radius: 1em;
+    padding: 1em 0;
+    gap: 0.5em;
+    font-weight: 600;
+}
+
+.add-class a
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+.add-class svg
+{
+    width: 1.3em;
+    height: auto;
+}
+
+.class-cards
+{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.class-cards div
+{
+    width: 30%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px)
+{
+    .class-cards div
+    {
+        width: 45%; /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 768px)
+{
+    .class-cards div
+    {
+        width: 100%; /* One card per row on small screens */
+    }
+}

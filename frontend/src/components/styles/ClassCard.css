@@ -1,0 +1,48 @@
+.class-card-container
+{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5em;
+    border: 1px solid gray;
+    border-radius: 1em;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.class-card-container:hover
+{
+    transform: translateY(-0.5em); 
+}
+
+.class-card-container h3
+{
+    font-size: 1.1em;
+    background-color: goldenrod;
+    min-height: 50%;
+    max-height: 50%;
+    overflow: hidden;
+    padding: 1em;
+    color: white;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.class-card-container:hover h3
+{
+    background-color: maroon; 
+}
+
+.class-card-container p
+{
+    padding: 1em;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #333;
+    max-height: 50%;
+}
+
+.class-card-container span
+{
+    font-weight: 600;
+}

@@ -1,5 +1,6 @@
 package com.wildocsai.backend.controller;
 
+import com.wildocsai.backend.dto.ClassDetailsResponse;
 import com.wildocsai.backend.dto.CreateClassRequest;
 import com.wildocsai.backend.entity.ClassEntity;
 import com.wildocsai.backend.service.ClassService;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -33,11 +33,11 @@ public class ClassController
     }
 
     @GetMapping("/all/teacher")
-    public ResponseEntity<?> getClassesByTeacher(String email)
+    public ResponseEntity<?> getClassesByTeacher(@RequestParam String email)
     {
         try
         {
-            List<ClassEntity> classes = classService.getClassesByTeacher(email);
+            List<ClassDetailsResponse> classes = classService.getClassesByTeacher(email);
             return ResponseEntity.ok(classes);
         }
         catch(RuntimeException e)
