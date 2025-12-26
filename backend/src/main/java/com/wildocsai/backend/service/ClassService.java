@@ -1,5 +1,6 @@
 package com.wildocsai.backend.service;
 
+import com.wildocsai.backend.dto.ClassDetailsResponse;
 import com.wildocsai.backend.dto.CreateClassRequest;
 import com.wildocsai.backend.entity.ClassEntity;
 import com.wildocsai.backend.entity.UserEntity;
@@ -8,6 +9,7 @@ import com.wildocsai.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -58,11 +60,30 @@ public class ClassService
         return classRepository.save(newClass);
     }
 
-    public List<ClassEntity> getClassesByTeacher(String email)
+    public List<ClassEntity> getClassesByTeacher2(String email)
     {
         UserEntity teacher = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Teacher not found with email: " + email));
 
         return classRepository.findByTeacher(teacher);
+    }
+
+    public List<ClassDetailsResponse> getClassesByTeacher(String email)
+    {
+        UserEntity teacher = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Teacher not found with email: " + email));
+
+        List<ClassEntity> classes = classRepository.findByTeacher(teacher);
+
+        return classes.stream()
+                .map(classEntity -> new ClassDetailsResponse
+                    (
+                        classEntity.getClassName(),
+                        classEntity.getSchoolYear(),
+                        classEntity.getSemester(),
+                        classEntity.getSection(),
+                        classEntity.getJoinCode()
+                    ))
+                    .collect(Collectors.toList());
     }
 }
