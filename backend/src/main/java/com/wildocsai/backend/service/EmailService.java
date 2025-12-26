@@ -26,6 +26,25 @@ public class EmailService
     private static final String CODE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int CODE_LENGTH = 8;
 
+    private String generateUniqueVerificationCode()
+    {
+        SecureRandom random = new SecureRandom();
+        String code;
+
+        do
+        {
+            StringBuilder sb = new StringBuilder(CODE_LENGTH);
+            for (int i = 0; i < CODE_LENGTH; i++)
+            {
+                sb.append(CODE_CHARACTERS.charAt(random.nextInt(CODE_CHARACTERS.length())));
+            }
+            code = sb.toString();
+        }
+        while(verificationCodeRepository.findByCode(code).isPresent()); // Ensure the code is unique
+
+        return code;
+    }
+
     public void sendVerificationEmail(String toEmail)
     {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -53,25 +72,6 @@ public class EmailService
         );
 
         mailSender.send(message);
-    }
-
-    private String generateUniqueVerificationCode()
-    {
-        SecureRandom random = new SecureRandom();
-        String code;
-
-        do
-        {
-            StringBuilder sb = new StringBuilder(CODE_LENGTH);
-            for (int i = 0; i < CODE_LENGTH; i++)
-            {
-                sb.append(CODE_CHARACTERS.charAt(random.nextInt(CODE_CHARACTERS.length())));
-            }
-            code = sb.toString();
-        }
-        while(verificationCodeRepository.findByCode(code).isPresent()); // Ensure the code is unique
-
-        return code;
     }
 
     public VerificationResponse verifyEmail(String code)
