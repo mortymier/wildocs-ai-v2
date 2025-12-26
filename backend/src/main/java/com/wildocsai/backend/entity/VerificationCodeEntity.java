@@ -19,7 +19,7 @@ public class VerificationCodeEntity
     @Column(unique = true)
     private String code;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
