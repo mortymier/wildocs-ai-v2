@@ -1,0 +1,140 @@
+.create-class-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2em 6em;
+    background-color: #eee;
+    align-items: center;
+}
+
+/* Quick Tips Section */
+.quick-tips
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    padding: 1.5em 2em;
+    padding-bottom: 2.5em;
+    border-radius: 1em;
+    background-color: lightblue;
+    gap: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.quick-tips h2
+{
+    color: maroon;
+    font-size: 1.4em;
+}
+
+.quick-tips ul
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.quick-tips ul li
+{
+    font-size: 0.9em;
+}
+
+.quick-tips ul li::marker
+{
+    color: maroon;
+}
+
+/* Form Container */
+.create-class-container .form-container
+{
+    width: 80%;
+    padding: 2em 6em;
+}
+
+.create-class-container .form-container h2
+{
+    color: maroon;
+    font-size: 1.5em;
+    margin-bottom: 2em;
+}
+
+/* Buttons */
+.create-class-buttons
+{
+    display: flex;
+    width: 100%;
+    margin: 1em 2em;
+    justify-content: center;
+    gap: 1em;
+}
+
+.create-class-buttons button
+{
+    width: 30%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px)
+{
+    .create-class-container
+    {
+        padding: 2em 4em;
+    }
+
+    .create-class-container .form-container
+    {
+        width: 90%;
+        padding: 2em 4em;
+    }
+
+    .create-class-buttons button
+    {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .create-class-container
+    {
+        padding: 1.5em 2em;
+    }
+
+    .create-class-container .form-container
+    {
+        width: 100%;
+        padding: 1.5em 2em;
+    }
+
+    .create-class-buttons button
+    {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .create-class-container
+    {
+        padding: 1em;
+    }
+
+    .create-class-container .form-container
+    {
+        width: 100%;
+        padding: 1em;
+    }
+
+    .create-class-buttons
+    {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .create-class-buttons button
+    {
+        width: 100%;
+    }
+}

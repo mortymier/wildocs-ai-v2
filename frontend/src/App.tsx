@@ -13,6 +13,7 @@ import Test from './pages/authentication/Test.tsx';
 
 // Teacher Pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard.tsx';
+import CreateClass from './pages/teacher/CreateClass.tsx';
 
 // Student Pages
 import StudentDashboard from './pages/student/StudentDashboard.tsx';
@@ -34,6 +35,7 @@ export default function App()
                 {/* Teacher Pages */}
                 <Route element={<ProtectedRoute allowedRoles={['TEACHER']}/>}>
                     <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
+                    <Route path="/teacher/create" element={<CreateClass/>}/>
                 </Route>
 
                 {/* Student Pages */}
