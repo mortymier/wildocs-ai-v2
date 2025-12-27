@@ -2,9 +2,12 @@ package com.wildocsai.backend.service;
 
 import com.wildocsai.backend.dto.ClassDetailsResponse;
 import com.wildocsai.backend.dto.CreateClassRequest;
+import com.wildocsai.backend.dto.UserDetailsResponse;
 import com.wildocsai.backend.entity.ClassEntity;
+import com.wildocsai.backend.entity.EnrollmentEntity;
 import com.wildocsai.backend.entity.UserEntity;
 import com.wildocsai.backend.repository.ClassRepository;
+import com.wildocsai.backend.repository.EnrollmentRepository;
 import com.wildocsai.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import java.security.SecureRandom;
@@ -18,6 +21,7 @@ public class ClassService
 {
     private final ClassRepository classRepository;
     private final UserRepository userRepository;
+    private final EnrollmentRepository enrollmentRepository;
 
     // For generating unique class join codes
     private static final String CODE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -60,14 +64,6 @@ public class ClassService
         return classRepository.save(newClass);
     }
 
-    public List<ClassEntity> getClassesByTeacher2(String email)
-    {
-        UserEntity teacher = userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("Teacher not found with email: " + email));
-
-        return classRepository.findByTeacher(teacher);
-    }
-
     public List<ClassDetailsResponse> getClassesByTeacher(String email)
     {
         UserEntity teacher = userRepository.findByEmail(email)
@@ -85,5 +81,58 @@ public class ClassService
                         classEntity.getJoinCode()
                     ))
                     .collect(Collectors.toList());
+    }
+
+    public String joinClass(String email, String joinCode)
+    {
+        UserEntity student = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found with email: " + email));
+
+        if (!student.getRole().name().equals("STUDENT")) 
+        {
+            throw new IllegalArgumentException("Only students can join classes.");
+        }   
+
+        ClassEntity classEntity = classRepository.findByJoinCode(joinCode)
+                .orElseThrow(() -> new IllegalArgumentException("Class not found with join code: " + joinCode));
+
+        boolean alreadyEnrolled = enrollmentRepository.findByClassEntity(classEntity).stream()
+            .anyMatch(enrollment -> enrollment.getStudent().getId().equals(student.getId()));
+
+        if (alreadyEnrolled) 
+        {
+            throw new IllegalArgumentException("You are already enrolled in this class.");
+        }
+
+        EnrollmentEntity enrollment =  new EnrollmentEntity();
+        enrollment.setClassEntity(classEntity);
+        enrollment.setStudent(student);
+
+        enrollmentRepository.save(enrollment);
+
+        return "You have successfully joined the class: " + classEntity.getClassName() + "!";
+    }
+
+    public List<UserDetailsResponse> getStudentsInClass(String joinCode)
+    {
+        ClassEntity classEntity = classRepository.findByJoinCode(joinCode)
+                .orElseThrow(() -> new IllegalArgumentException("Class not found with join code: " + joinCode));
+
+        List<EnrollmentEntity> enrollments = enrollmentRepository.findByClassEntity(classEntity);
+
+        return enrollments.stream()
+                .map(enrollment ->
+                {
+                    UserEntity student = enrollment.getStudent();
+                    return new UserDetailsResponse
+                    (
+                        student.getFirstName(),
+                        student.getLastName(),
+                        student.getEmail(),
+                        student.getIdNum(),
+                        student.getRole().name()
+                    );
+                })
+                .collect(Collectors.toList());
     }
 }
