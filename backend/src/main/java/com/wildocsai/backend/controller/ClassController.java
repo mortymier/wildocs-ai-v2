@@ -59,4 +59,18 @@ public class ClassController
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @GetMapping("/all/student")
+    public ResponseEntity<?> getClassesByStudent(@RequestParam String email)
+    {
+        try
+        {
+            List<ClassDetailsResponse> classes = classService.getClassesByStudent(email);
+            return ResponseEntity.ok(classes);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 }
