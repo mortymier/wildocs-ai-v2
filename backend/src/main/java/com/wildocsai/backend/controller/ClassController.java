@@ -32,6 +32,20 @@ public class ClassController
         }
     }
 
+    @PostMapping("/join")
+    public ResponseEntity<?> joinClass(@RequestParam String email, @RequestParam String joinCode)
+    {
+        try
+        {
+            String response = classService.joinClass(email, joinCode);
+            return ResponseEntity.ok(response);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @GetMapping("/all/teacher")
     public ResponseEntity<?> getClassesByTeacher(@RequestParam String email)
     {
