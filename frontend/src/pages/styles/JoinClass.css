@@ -1,0 +1,160 @@
+.join-class-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2em;
+    background-color: #eee;
+    align-items: center;
+}
+
+.join-class-container h2
+{
+    color: maroon;
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+}
+
+.join-class-container p
+{
+    font-size: 1em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.join-class-container form
+{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 2em 3em;
+    border: 1px solid goldenrod;
+    border-top: 10px solid goldenrod;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.join-class-container form label
+{
+    color: maroon;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.join-class-container form input
+{
+    padding: 0.5em 1em;
+    background-color: #eee;
+    font-size: 1em;
+    margin-bottom: 2em;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+}
+
+.join-class-container form input:focus
+{
+    outline-color: gold;
+    background-color: white;
+}
+
+.join-class-container .btn-gold
+{
+    width: 100%;
+    align-self: center;
+}
+
+.join-class-container .form-error
+{
+    margin-bottom: 2em;
+    color: red;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    align-self: center;
+}
+
+.join-class-container .form-success
+{
+    margin-bottom: 2em;
+    color: green;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    align-self: center;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px)
+{
+    .join-class-container form
+    {
+        width: 60%;
+        padding: 1.5em 2em;
+    }
+
+    .join-class-container h2
+    {
+        font-size: 1.3em;
+    }
+
+    .join-class-container p
+    {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .join-class-container form
+    {
+        width: 80%;
+        padding: 1em 1.5em;
+    }
+
+    .join-class-container h2
+    {
+        font-size: 1.2em;
+    }
+
+    .join-class-container p
+    {
+        font-size: 0.85em;
+    }
+
+    .join-class-container form input
+    {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .join-class-container
+    {
+        padding: 1em;
+    }
+
+    .join-class-container form
+    {
+        width: 100%;
+        padding: 1em;
+    }
+
+    .join-class-container h2
+    {
+        font-size: 1em;
+    }
+
+    .join-class-container p
+    {
+        font-size: 0.8em;
+    }
+
+    .join-class-container form input
+    {
+        font-size: 0.8em;
+        padding: 0.4em 0.8em;
+    }
+}

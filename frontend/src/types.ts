@@ -52,4 +52,4 @@ export type ClassCardDetails =
     semester: string;
     section: string;
     joinCode: string;
-}
+};
