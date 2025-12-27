@@ -18,6 +18,7 @@ import CreateClass from './pages/teacher/CreateClass.tsx';
 
 // Student Pages
 import StudentDashboard from './pages/student/StudentDashboard.tsx';
+import JoinClass from './pages/student/JoinClass.tsx';
 
 export default function App()
 {
@@ -43,6 +44,7 @@ export default function App()
                 {/* Student Pages */}
                 <Route element={<ProtectedRoute allowedRoles={['STUDENT']}/>}>
                     <Route path="/student/dashboard" element={<StudentDashboard/>}/>
+                    <Route path="/student/join" element={<JoinClass/>}/>
                 </Route>
 
                 {/* Admin Pages */}
