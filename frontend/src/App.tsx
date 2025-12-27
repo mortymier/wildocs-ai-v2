@@ -13,11 +13,12 @@ import Test from './pages/authentication/Test.tsx';
 
 // Teacher Pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard.tsx';
-import ViewClasses from './pages/teacher/ViewClasses.tsx';
+import TeacherViewClasses from './pages/teacher/TeacherViewClasses.tsx';
 import CreateClass from './pages/teacher/CreateClass.tsx';
 
 // Student Pages
 import StudentDashboard from './pages/student/StudentDashboard.tsx';
+import StudentViewClasses from './pages/student/StudentViewClasses.tsx';
 import JoinClass from './pages/student/JoinClass.tsx';
 
 export default function App()
@@ -37,13 +38,14 @@ export default function App()
                 {/* Teacher Pages */}
                 <Route element={<ProtectedRoute allowedRoles={['TEACHER']}/>}>
                     <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
-                    <Route path="/teacher/classes" element={<ViewClasses/>}/>
+                    <Route path="/teacher/classes" element={<TeacherViewClasses/>}/>
                     <Route path="/teacher/create" element={<CreateClass/>}/>
                 </Route>
 
                 {/* Student Pages */}
                 <Route element={<ProtectedRoute allowedRoles={['STUDENT']}/>}>
                     <Route path="/student/dashboard" element={<StudentDashboard/>}/>
+                    <Route path="/student/classes" element={<StudentViewClasses/>}/>
                     <Route path="/student/join" element={<JoinClass/>}/>
                 </Route>
 
