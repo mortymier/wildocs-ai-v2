@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -108,7 +109,14 @@ public class ClassService
         enrollment.setClassEntity(classEntity);
         enrollment.setStudent(student);
 
-        enrollmentRepository.save(enrollment);
+        try 
+        {
+            enrollmentRepository.save(enrollment);
+        } 
+        catch (DataIntegrityViolationException e) 
+        {
+            throw new IllegalArgumentException("You are already enrolled in this class.");
+        }
 
         return "You have successfully joined the class: " + classEntity.getClassName() + "!";
     }
