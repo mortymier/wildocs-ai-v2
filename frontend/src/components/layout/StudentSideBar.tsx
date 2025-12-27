@@ -45,7 +45,7 @@ export default function StudentSideBar()
                     <li> View Submissions </li> 
                 </Link>
                 <Link 
-                    to="/student/dashboard"
+                    to="/student/classes"
                     className={location.pathname === "/student/classes" ? "current" : ""}
                 >
                     <FaChalkboardTeacher/>
