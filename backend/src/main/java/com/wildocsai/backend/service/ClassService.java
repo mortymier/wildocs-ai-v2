@@ -143,4 +143,23 @@ public class ClassService
                 })
                 .collect(Collectors.toList());
     }
+
+    public List<ClassDetailsResponse> getClassesByStudent(String email)
+    {
+        UserEntity student = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found with email: " + email));
+
+        List<ClassEntity> classes = enrollmentRepository.findClassesByStudent(student);
+
+        return classes.stream()
+                .map(classEntity -> new ClassDetailsResponse
+                    (
+                        classEntity.getClassName(),
+                        classEntity.getSchoolYear(),
+                        classEntity.getSemester(),
+                        classEntity.getSection(),
+                        classEntity.getJoinCode()
+                    ))
+                    .collect(Collectors.toList());
+    }
 }
