@@ -81,4 +81,31 @@ export const joinClass = async(email: string, joinCode: string) =>
 
         throw new Error('Joining class failed. Please try again.');
     }
-}
+};
+
+
+export const getClassesByStudent = async(email: string) =>
+{
+    try
+    {
+        const response = await axios.get
+        (
+            `http://localhost:8080/api/class/all/student`,
+            {
+                params: { email },
+                withCredentials: true
+            }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if (error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Fetching classes failed. Please try again.');
+    }
+};
