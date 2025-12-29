@@ -14,6 +14,7 @@ import Test from './pages/authentication/Test.tsx';
 // Teacher Pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard.tsx';
 import TeacherViewClasses from './pages/teacher/TeacherViewClasses.tsx';
+import TeacherClassDetails from './pages/teacher/TeacherClassDetails.tsx';
 import CreateClass from './pages/teacher/CreateClass.tsx';
 
 // Student Pages
@@ -40,6 +41,7 @@ export default function App()
                     <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
                     <Route path="/teacher/classes" element={<TeacherViewClasses/>}/>
                     <Route path="/teacher/create" element={<CreateClass/>}/>
+                    <Route path="/teacher/class-details/:joinCode" element={<TeacherClassDetails/>}/>
                 </Route>
 
                 {/* Student Pages */}

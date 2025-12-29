@@ -1,0 +1,260 @@
+.class-details-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2em;
+    background-color: #eee;
+}
+
+.class-details-container a
+{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 1em;
+    gap: 0.5em;
+}
+
+.class-details-container a svg
+{
+    stroke: #333;
+    width: 1.5em;
+    height: auto;
+}
+
+.class-details-container a p
+{
+    color: #333;
+    font-size: 1.1em;
+}
+
+.class-details-card
+{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 3em;
+    border: 1px solid maroon;
+    border-top: 10px solid maroon;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.class-details-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.class-details-header h1
+{
+    color: maroon;
+    font-size: 2em;
+}
+
+.class-details-header h2
+{
+    color: goldenrod;
+    font-size: 1.5em;
+}
+
+.class-details-header h3
+{
+    font-size: 1.2em;
+    color: #333;
+}
+
+.class-details-container hr
+{
+    width: 100%;
+    border-color: gray;
+    margin: 0;
+}
+
+.class-details-columns
+{
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to stack on smaller screens */
+    width: 100%;
+    border: 2px solid black;
+}
+
+.class-details-columns .left-column
+{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.class-details-columns .right-column
+{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-left: 2px solid black;
+}
+
+.class-details-columns .left-column div:nth-child(2)
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+    border-bottom: 2px solid black;
+    gap: 0.5em;
+}
+
+.class-details-columns .left-column div:nth-child(2) p
+{
+    font-size: 1em;
+}
+
+.class-details-columns .left-column div:nth-child(2) span
+{
+    color: maroon;
+}
+
+.class-details-columns .column-header
+{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1em;
+    gap: 0.5em;
+    background-color: maroon;
+}
+
+.class-details-columns .column-header svg
+{
+    width: 1.1em;
+    height: auto;
+    stroke: white;
+    fill: white;
+}
+
+.class-details-columns .column-header h3
+{
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px)
+{
+    .class-details-container
+    {
+        padding: 1.5em;
+    }
+
+    .class-details-card
+    {
+        padding: 1em 2em;
+    }
+
+    .class-details-header h1
+    {
+        font-size: 1.8em;
+    }
+
+    .class-details-header h2
+    {
+        font-size: 1.3em;
+    }
+
+    .class-details-columns .left-column,
+    .class-details-columns .right-column
+    {
+        width: 100%; /* Stack columns vertically */
+        border: none; /* Remove border between columns */
+    }
+
+    .class-details-columns
+    {
+        border: none; /* Remove outer border */
+    }
+
+    .class-details-columns .left-column div:nth-child(2)
+    {
+        border: none;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .class-details-container
+    {
+        padding: 1em;
+    }
+
+    .class-details-card
+    {
+        padding: 1em;
+    }
+
+    .class-details-header h1
+    {
+        font-size: 1.5em;
+    }
+
+    .class-details-header h2
+    {
+        font-size: 1.2em;
+    }
+
+    .class-details-header h3
+    {
+        font-size: 1em;
+    }
+
+    .class-details-columns .column-header
+    {
+        padding: 0.8em;
+    }
+
+    .class-details-columns .column-header h3
+    {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px)
+{
+    .class-details-container
+    {
+        padding: 0.5em;
+    }
+
+    .class-details-card
+    {
+        padding: 0.5em;
+    }
+
+    .class-details-header h1
+    {
+        font-size: 1.2em;
+    }
+
+    .class-details-header h2
+    {
+        font-size: 1em;
+    }
+
+    .class-details-header h3
+    {
+        font-size: 0.9em;
+    }
+
+    .class-details-columns .column-header
+    {
+        padding: 0.5em;
+    }
+
+    .class-details-columns .column-header h3
+    {
+        font-size: 0.9em;
+    }
+}

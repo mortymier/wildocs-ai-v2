@@ -35,7 +35,7 @@ export default function JoinClass()
 
             setTimeout(() =>
             {
-                navigate('/student/dashboard');
+                navigate('/student/classes');
 
             }, 3000);
         }
