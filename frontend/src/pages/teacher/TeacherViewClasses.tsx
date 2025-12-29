@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { getClassesByTeacher } from '../../api/ClassService.ts';
 import type { ClassCardDetails, AuthenticatedUser } from '../../types.ts';
@@ -17,6 +17,7 @@ export default function TeacherViewClasses()
     const { userDetails } = useOutletContext<OutletContext>();
     const [classes, setClasses] = useState<ClassCardDetails[]>([]);
     const [error, setError] = useState<string>('');
+    const navigate = useNavigate();
 
     useEffect(() =>
     {
@@ -38,6 +39,10 @@ export default function TeacherViewClasses()
 
     }, []);
 
+    const handleCardClick = (joinCode: string) => 
+    {
+        navigate(`/teacher/class-details/${joinCode}`);
+    };
 
     return (
         <>
@@ -69,6 +74,7 @@ export default function TeacherViewClasses()
                                 semester={classItem.semester}
                                 section={classItem.section}
                                 joinCode={classItem.joinCode}
+                                clickHandler={handleCardClick}
                             />
                         ))}
                     </div>

@@ -2,10 +2,10 @@ import type { ClassCardDetails } from '../../types.ts';
 import '../styles/ClassCard.css';
 
 export default function ClassCard
-({className, schoolYear, semester, section, joinCode}: ClassCardDetails)
+({className, schoolYear, semester, section, joinCode, clickHandler}: ClassCardDetails)
 {
     return (
-        <div className="class-card-container">
+        <div className="class-card-container" onClick={() => clickHandler(joinCode)}>
             <h3> {className} </h3>
             <p> 
                 {semester} Semester - {section} <br/> 
