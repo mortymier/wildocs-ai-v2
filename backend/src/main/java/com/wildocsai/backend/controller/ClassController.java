@@ -2,6 +2,7 @@ package com.wildocsai.backend.controller;
 
 import com.wildocsai.backend.dto.ClassDetailsResponse;
 import com.wildocsai.backend.dto.CreateClassRequest;
+import com.wildocsai.backend.dto.UserDetailsResponse;
 import com.wildocsai.backend.entity.ClassEntity;
 import com.wildocsai.backend.service.ClassService;
 import jakarta.validation.Valid;
@@ -67,6 +68,34 @@ public class ClassController
         {
             List<ClassDetailsResponse> classes = classService.getClassesByStudent(email);
             return ResponseEntity.ok(classes);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<?> getClassDetails(@RequestParam String joinCode)
+    {
+        try
+        {
+            ClassDetailsResponse classDetails = classService.getClassDetails(joinCode);
+            return ResponseEntity.ok(classDetails);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/student-list")
+    public ResponseEntity<?> getStudentsInClass(@RequestParam String joinCode)
+    {
+        try
+        {
+            List<UserDetailsResponse> students =  classService.getStudentsInClass(joinCode);
+            return ResponseEntity.ok(students);
         }
         catch(RuntimeException e)
         {

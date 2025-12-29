@@ -162,4 +162,19 @@ public class ClassService
                     ))
                     .collect(Collectors.toList());
     }
+
+    public ClassDetailsResponse getClassDetails(String joinCode)
+    {
+        ClassEntity classEntity = classRepository.findByJoinCode(joinCode)
+                .orElseThrow(() -> new IllegalArgumentException("Class not found with join code: " + joinCode));
+
+        return new ClassDetailsResponse
+        (
+            classEntity.getClassName(),
+            classEntity.getSchoolYear(),
+            classEntity.getSemester(),
+            classEntity.getSection(),
+            classEntity.getJoinCode()
+        );
+    }
 }
