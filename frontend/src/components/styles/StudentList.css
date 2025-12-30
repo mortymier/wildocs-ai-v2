@@ -15,6 +15,7 @@
     padding: 1em;
     gap: 1em;
     margin: 0;
+    list-style-type: none;
 }
 
 .student-list-container li
@@ -57,7 +58,6 @@
 
     .student-list-container li
     {
-        
         align-items: flex-start;
         gap: 0.5em;
     }

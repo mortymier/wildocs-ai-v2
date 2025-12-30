@@ -6,13 +6,13 @@ import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { FaRegUser } from 'react-icons/fa6';
 import type { ClassDetails, AuthenticatedUser } from '../../types.ts';
 import UserHeader from '../../components/layout/UserHeader.tsx';
-import TeacherSideBar from '../../components/layout/TeacherSideBar.tsx';
+import StudentSideBar from '../../components/layout/StudentSideBar.tsx';
 import Footer from '../../components/layout/Footer.tsx';
 import StudentList from '../../components/class/StudentList.tsx';
 import '../styles/ClassDetails.css';
-import '../styles/TeacherLayout.css';
+import '../styles/StudentLayout.css';
 
-export default function TeacherClassDetails()
+export default function StudentClassDetails()
 {
     const { joinCode } = useParams<{ joinCode: string }>();
     const [classDetails, setClassDetails] = useState<ClassDetails | null>(null);
@@ -57,7 +57,7 @@ export default function TeacherClassDetails()
             <title> Class Details - Wildocs AI </title>
             <UserHeader/>
             <div className="teacher-layout">
-                <TeacherSideBar/>
+                <StudentSideBar/>
                 <main className="class-details-container">
                     <Link to="/teacher/classes">
                         <IoArrowBack/>

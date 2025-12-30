@@ -52,7 +52,7 @@ export default function TeacherViewClasses()
                 <TeacherSideBar/>
                 <main className="view-classes-container">
                     <div className="view-classes-header">
-                        <h2> View Created Classes </h2>
+                        <h2> Your Created Classes </h2>
                         <p> 
                             These are the list of classes that you've created. <br/> 
                             {classes.length > 0 ? "Click card to view details." : "You have not created any classes yet."}
@@ -74,6 +74,7 @@ export default function TeacherViewClasses()
                                 semester={classItem.semester}
                                 section={classItem.section}
                                 joinCode={classItem.joinCode}
+                                teacherName={classItem.teacherName}
                                 clickHandler={handleCardClick}
                             />
                         ))}

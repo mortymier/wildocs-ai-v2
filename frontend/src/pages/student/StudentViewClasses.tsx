@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { getClassesByStudent } from '../../api/ClassService.ts';
 import type { ClassCardDetails, AuthenticatedUser } from '../../types.ts';
@@ -17,6 +17,7 @@ export default function StudentViewClasses()
     const { userDetails } = useOutletContext<OutletContext>();
     const [classes, setClasses] = useState<ClassCardDetails[]>([]);
     const [error, setError] = useState<string>('');
+    const navigate = useNavigate();
 
     useEffect(() =>
     {
@@ -38,6 +39,11 @@ export default function StudentViewClasses()
 
     }, []);
 
+    const handleCardClick = (joinCode: string) => 
+    {
+        navigate(`/student/class-details/${joinCode}`);
+    };
+
     return (
         <>
             <title> View Classes - Wildocs AI </title>
@@ -46,7 +52,7 @@ export default function StudentViewClasses()
                 <StudentSideBar/>
                 <main className="view-classes-container">
                     <div className="view-classes-header">
-                        <h2> View Joined Classes </h2>
+                        <h2> Your Joined Classes </h2>
                         <p>
                             These are the list of classes that you've joined. <br/> 
                             {classes.length > 0 ? "Click card to view details." : "You have not joined any classes yet."}
@@ -68,6 +74,8 @@ export default function StudentViewClasses()
                                 semester={classItem.semester}
                                 section={classItem.section}
                                 joinCode={classItem.joinCode}
+                                teacherName={classItem.teacherName}
+                                clickHandler={handleCardClick}
                             />
                         ))}
                     </div>
