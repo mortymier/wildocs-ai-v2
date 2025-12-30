@@ -12,4 +12,5 @@ public class ClassDetailsResponse
     private String semester;
     private String section;
     private String joinCode;
+    private String teacherName;
 }

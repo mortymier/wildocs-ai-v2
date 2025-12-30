@@ -79,7 +79,9 @@ public class ClassService
                         classEntity.getSchoolYear(),
                         classEntity.getSemester(),
                         classEntity.getSection(),
-                        classEntity.getJoinCode()
+                        classEntity.getJoinCode(),
+                        classEntity.getTeacher().getFirstName() + " " + 
+                        classEntity.getTeacher().getLastName()
                     ))
                     .collect(Collectors.toList());
     }
@@ -158,7 +160,9 @@ public class ClassService
                         classEntity.getSchoolYear(),
                         classEntity.getSemester(),
                         classEntity.getSection(),
-                        classEntity.getJoinCode()
+                        classEntity.getJoinCode(),
+                        classEntity.getTeacher().getFirstName() + " " + 
+                        classEntity.getTeacher().getLastName()
                     ))
                     .collect(Collectors.toList());
     }
@@ -174,7 +178,9 @@ public class ClassService
             classEntity.getSchoolYear(),
             classEntity.getSemester(),
             classEntity.getSection(),
-            classEntity.getJoinCode()
+            classEntity.getJoinCode(),
+            classEntity.getTeacher().getFirstName() + " " + 
+            classEntity.getTeacher().getLastName()
         );
     }
 }
