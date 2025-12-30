@@ -56,10 +56,10 @@ export default function StudentClassDetails()
         <>
             <title> Class Details - Wildocs AI </title>
             <UserHeader/>
-            <div className="teacher-layout">
+            <div className="student-layout">
                 <StudentSideBar/>
                 <main className="class-details-container">
-                    <Link to="/teacher/classes">
+                    <Link to="/student/classes">
                         <IoArrowBack/>
                         <p> Back </p>
                     </Link>
