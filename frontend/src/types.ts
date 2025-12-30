@@ -52,6 +52,7 @@ export type ClassCardDetails =
     semester: string;
     section: string;
     joinCode: string;
+    teacherName: string;
     clickHandler: (joinCode: string) => void;
 };
 
@@ -63,4 +64,5 @@ export type ClassDetails =
     semester: string;
     section: string;
     joinCode: string;
-}
+    teacherName: string;
+};

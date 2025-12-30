@@ -20,6 +20,7 @@ import CreateClass from './pages/teacher/CreateClass.tsx';
 // Student Pages
 import StudentDashboard from './pages/student/StudentDashboard.tsx';
 import StudentViewClasses from './pages/student/StudentViewClasses.tsx';
+import StudentClassDetails from './pages/student/StudentClassDetails.tsx';
 import JoinClass from './pages/student/JoinClass.tsx';
 
 export default function App()
@@ -40,14 +41,16 @@ export default function App()
                 <Route element={<ProtectedRoute allowedRoles={['TEACHER']}/>}>
                     <Route path="/teacher/dashboard" element={<TeacherDashboard/>}/>
                     <Route path="/teacher/classes" element={<TeacherViewClasses/>}/>
-                    <Route path="/teacher/create" element={<CreateClass/>}/>
                     <Route path="/teacher/class-details/:joinCode" element={<TeacherClassDetails/>}/>
+                    <Route path="/teacher/create" element={<CreateClass/>}/>
+
                 </Route>
 
                 {/* Student Pages */}
                 <Route element={<ProtectedRoute allowedRoles={['STUDENT']}/>}>
                     <Route path="/student/dashboard" element={<StudentDashboard/>}/>
                     <Route path="/student/classes" element={<StudentViewClasses/>}/>
+                    <Route path="/student/class-details/:joinCode" element={<StudentClassDetails/>}/>
                     <Route path="/student/join" element={<JoinClass/>}/>
                 </Route>
 
