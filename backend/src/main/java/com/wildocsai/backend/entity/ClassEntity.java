@@ -31,7 +31,7 @@ public class ClassEntity
     private UserEntity teacher;
 
     @PrePersist
-    public void onCreate()
+    protected void onCreate()
     {
         createdAt = LocalDateTime.now();
     }
