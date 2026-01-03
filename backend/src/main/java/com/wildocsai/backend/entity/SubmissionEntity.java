@@ -41,7 +41,11 @@ public class SubmissionEntity
     @Column(columnDefinition = "TEXT")
     private String teacherFeedback;
 
+    // Indicates if the teacher likes or dislikes the submission
     private Boolean thumbsUp;
+
+    // Indicates if the submission has been evaluated by AI
+    private Boolean isEvaluated;
 
     @PrePersist
     protected void onSubmit()
@@ -49,5 +53,6 @@ public class SubmissionEntity
         submittedAt = LocalDateTime.now();
         teacherFeedback = null;
         thumbsUp = null;
+        isEvaluated = false;
     }
 }

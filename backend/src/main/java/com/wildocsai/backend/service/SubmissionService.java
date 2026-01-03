@@ -86,6 +86,7 @@ public class SubmissionService
                 submission.getContent(),
                 submission.getTeacherFeedback(),
                 submission.getThumbsUp(),
+                submission.getIsEvaluated(),
                 submission.getSubmittedAt(),
                 submission.getStudent().getEmail(),
                 submission.getClassEntity().getJoinCode()
