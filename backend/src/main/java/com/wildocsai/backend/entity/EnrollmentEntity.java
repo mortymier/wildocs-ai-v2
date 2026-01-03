@@ -23,14 +23,14 @@ public class EnrollmentEntity
     private ClassEntity classEntity;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "student_id")
     private UserEntity student;
 
-    private LocalDateTime joinedAt;
+    private LocalDateTime enrolledAt;
 
     @PrePersist
-    public void onJoin()
+    protected void onEnroll()
     {
-        joinedAt = LocalDateTime.now();
+        enrolledAt = LocalDateTime.now();
     }
 }
