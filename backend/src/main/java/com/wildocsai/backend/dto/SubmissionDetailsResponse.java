@@ -17,6 +17,8 @@ public class SubmissionDetailsResponse
     private Boolean thumbsUp;
     private Boolean isEvaluated;
     private LocalDateTime submittedAt;
+    private String studentName;
     private String studentEmail;
+    private String className;
     private String classJoinCode;
 }
