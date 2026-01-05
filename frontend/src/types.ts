@@ -66,3 +66,20 @@ export type ClassDetails =
     joinCode: string;
     teacherName: string;
 };
+
+
+export type SubmissionDetails = 
+{
+    submissionNumber: number;
+    fileName: string;
+    fileExtension: string;
+    content: string;
+    teacherFeedback: string | null;
+    thumbsUp: boolean | null;
+    isEvaluated: boolean;
+    submittedAt: string;
+    studentName: string;
+    studentEmail: string;
+    className: string;
+    classJoinCode: string;
+}
