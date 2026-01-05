@@ -1,0 +1,183 @@
+.submissions-table
+{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; 
+}
+
+.submissions-table thead
+{
+    display: table;
+    width: 100%;
+    table-layout: fixed; 
+    background-color: gray;
+    color: white;
+}
+
+.submissions-table tbody
+{
+    display: block;
+    max-height: 10em; 
+    overflow-y: auto; 
+    width: 100%;
+}
+
+.submissions-table tbody tr
+{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.submissions-table tbody tr:nth-child(even)
+{
+    background-color: #ddd; /* Set background color for every second row */
+}
+
+.submissions-table th
+{
+    font-size: 0.9em;
+    text-align: left;
+    padding: 0.5em;
+}
+
+.submissions-table td
+{
+    font-size: 0.9em;
+    text-align: left;
+    padding: 0.5em;
+}
+
+.submissions-table .file-name span
+{
+    display: inline-block;
+    max-width: 90%;
+    overflow: wrap;
+    word-wrap: break-word;  
+    vertical-align: middle;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.submissions-table .file-name span::-webkit-scrollbar
+{
+    display: none;
+}
+
+.submissions-table .file-name svg
+{
+    width: 1.2em;
+    height: auto;
+    fill: maroon;
+    margin-right: 0.5em;
+}
+
+.submissions-table .ai-evaluation span
+{
+    display: flex;
+    justify-content: center;
+}
+
+.submissions-table .ai-evaluation svg
+{
+    width: 1.2em;
+    height: auto;
+    margin-right: 0.5em;
+}
+
+.submissions-table .teacher-feedback span
+{
+    display: flex;
+    justify-content: center;
+}
+
+.submissions-table .teacher-feedback svg
+{
+    width: 1.3em;
+    height: auto;
+    cursor: pointer;
+}
+
+.submissions-table .actions span
+{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+.submissions-table .actions svg
+{
+    width: 1.3em;
+    height: auto;
+    cursor: pointer;
+}
+
+.submissions-table .actions .evaluate:hover
+{
+    fill: blue;
+}
+
+.submissions-table .actions .delete:hover
+{
+    fill: red;
+}
+
+.submissions-table .teacher-feedback svg:hover
+{
+    fill: goldenrod;
+}
+
+.submissions-table th:first-child,
+.submissions-table td:first-child
+{
+    width: 10%;
+}
+
+.submissions-table th:nth-child(2),
+.submissions-table td:nth-child(2)
+{
+    width: 35%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px)
+{
+    .submissions-table th,
+    .submissions-table td
+    {
+        font-size: 0.8em;
+        padding: 0.3em;
+    }
+
+    .submissions-table th
+    {
+        font-size: 0.7em; /* Shrink header text for medium screens */
+    }
+
+    .submissions-table th:nth-child(2)
+    .submissions-table td:nth-child(2)
+    {
+        width: 20%; /* Adjust width of the second column */
+    }
+}
+
+@media (max-width: 480px)
+{
+    .submissions-table th,
+    .submissions-table td
+    {
+        font-size: 0.7em;
+        padding: 0.2em;
+    }
+
+    .submissions-table th
+    {
+        font-size: 0.6em; /* Shrink header text further for small screens */
+    }
+
+    .submissions-table th:nth-child(2)
+    .submissions-table td:nth-child(2)
+    {
+        width: 15%; /* Further adjust width of the second column */
+    }
+}

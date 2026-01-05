@@ -2,8 +2,8 @@
 {
     display: flex;
     flex-direction: column;
-    max-height: 20em;
-    min-height: 20em;
+    max-height: 21em;
+    min-height: 21em;
     overflow-y: auto; 
     overflow-x: hidden;
 }
