@@ -348,6 +348,172 @@
     margin-bottom: 1em;
 }
 
+#evaluation-results-modal
+{
+    display: none; 
+    position: fixed; 
+    flex-direction: column;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10000; 
+    background-color: white; 
+    padding: 1em 2em; 
+    padding-bottom: 2em;
+    border: 1px solid maroon;
+    border-top: 10px solid maroon;
+    border-radius: 1em; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 90%; 
+    max-width: 60%; 
+    max-height: 80vh;
+}
+
+.er-close
+{
+    width: 1.3em;
+    height: auto;
+    margin-left: auto;
+    fill: red;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.er-header
+{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 0.5em;
+    flex-shrink: 0;
+}
+
+.er-header-a
+{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.er-header-a h1
+{
+    color: maroon;
+}
+
+.er-header-b
+{
+    width: 30%;
+    align-self: center;
+    justify-items: flex-end;
+}
+
+.green-total
+{
+    color: green;
+}
+
+.red-total
+{
+    color: red;
+}
+
+#evaluation-results-modal hr
+{
+    width: 90%;
+    margin-bottom: 0.5em;
+    border-color: maroon;
+}
+
+.er-body
+{
+    display: flex;
+    width: 90%;
+    align-self: center;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-grow: 1;
+    gap: 1em;
+}
+
+.section-card
+{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 0.5em;
+    padding: 1em 2em;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-card-header
+{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.section-card-header svg
+{
+    margin-right: 1em;
+    width: 1.5em;
+    height: auto;
+}
+
+.section-card-header h3
+{
+    font-size: 1.1em;
+}
+
+.section-card-header p
+{
+    margin-left: auto;
+}
+
+.section-card-header-a svg
+{
+    fill: green;
+}
+
+.section-card-header-a h3,
+.section-card-header-a p
+{
+    color: green;
+}
+
+.section-card-header-b svg
+{
+    fill: red
+}
+
+.section-card-header-b h3,
+.section-card-header-b p
+{
+    color: red;
+}
+
+.section-card-body
+{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.section-card-body h4
+{
+    margin-bottom: 0.5em;
+}
+
+.section-card-body p
+{
+    margin-bottom: 1em;
+    padding-left: 0.5em;
+    line-height: 1.5;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px)
 {
@@ -494,374 +660,5 @@
     .class-details-columns .class-details p
     {
         font-size: 0.7em;
-    }
-}
-
-/* AI Evaluation Modal Styles */
-#evaluation-modal
-{
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 12px;
-    padding: 2em;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    z-index: 10000;
-    flex-direction: column;
-}
-
-#evaluation-modal > svg
-{
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-size: 2em;
-    cursor: pointer;
-    color: #999;
-    transition: color 0.2s;
-}
-
-#evaluation-modal > svg:hover
-{
-    color: #333;
-}
-
-.evaluation-loading
-{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3em 2em;
-    text-align: center;
-}
-
-.evaluation-loading h3
-{
-    margin: 1em 0 0.5em 0;
-    color: maroon;
-    font-size: 1.5em;
-}
-
-.evaluation-loading p
-{
-    color: #666;
-    font-size: 1.1em;
-}
-
-.loading-spinner
-{
-    width: 60px;
-    height: 60px;
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid maroon;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin
-{
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.evaluation-error
-{
-    padding: 2em;
-    text-align: center;
-}
-
-.evaluation-error h3
-{
-    color: #dc3545;
-    margin-bottom: 1em;
-}
-
-.evaluation-results
-{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-}
-
-.evaluation-header
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 1em;
-    border-bottom: 2px solid #eee;
-}
-
-.evaluation-header h2
-{
-    color: maroon;
-    font-size: 1.8em;
-    margin: 0;
-}
-
-.total-score
-{
-    font-size: 3em;
-    font-weight: bold;
-}
-
-.evaluation-sections
-{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.evaluation-section-card
-{
-    border: 1px solid #ddd;
-    border-left: 4px solid maroon;
-    border-radius: 8px;
-    padding: 1.5em;
-    background-color: #fafafa;
-    transition: box-shadow 0.2s;
-}
-
-.evaluation-section-card:hover
-{
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.section-header
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1em;
-}
-
-.section-header h3
-{
-    color: maroon;
-    font-size: 1.3em;
-    margin: 0;
-}
-
-.section-score
-{
-    font-size: 1.5em;
-    font-weight: bold;
-    color: goldenrod;
-}
-
-.section-evaluation
-{
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1em;
-}
-
-.subsections
-{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-bottom: 1.5em;
-}
-
-.subsection
-{
-    background-color: white;
-    padding: 1em;
-    border-radius: 6px;
-    border-left: 3px solid goldenrod;
-}
-
-.subsection h4
-{
-    color: #333;
-    font-size: 1.1em;
-    margin: 0 0 0.5em 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.subsection h4 span
-{
-    color: goldenrod;
-    font-size: 0.9em;
-}
-
-.subsection p
-{
-    color: #666;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.section-feedback
-{
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
-    background-color: white;
-    padding: 1em;
-    border-radius: 6px;
-}
-
-.section-feedback div
-{
-    line-height: 1.6;
-    color: #555;
-}
-
-.section-feedback strong
-{
-    color: #333;
-    display: block;
-    margin-bottom: 0.3em;
-}
-
-.view-evaluation
-{
-    cursor: pointer;
-    color: maroon;
-    transition: color 0.2s;
-}
-
-.view-evaluation:hover
-{
-    color: goldenrod;
-}
-
-/* Responsive Design for Evaluation Modal */
-@media (max-width: 1024px)
-{
-    #evaluation-modal
-    {
-        width: 95%;
-        max-width: 800px;
-        padding: 1.5em;
-    }
-
-    .total-score
-    {
-        font-size: 2.5em;
-    }
-
-    .evaluation-header h2
-    {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 768px)
-{
-    #evaluation-modal
-    {
-        width: 95%;
-        padding: 1em;
-    }
-
-    .evaluation-header
-    {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5em;
-    }
-
-    .total-score
-    {
-        font-size: 2em;
-    }
-
-    .evaluation-header h2
-    {
-        font-size: 1.3em;
-    }
-
-    .section-header h3
-    {
-        font-size: 1.1em;
-    }
-
-    .section-score
-    {
-        font-size: 1.2em;
-    }
-}
-
-@media (max-width: 480px)
-{
-    #evaluation-modal
-    {
-        width: 95%;
-        padding: 0.8em;
-    }
-
-    .evaluation-loading
-    {
-        padding: 2em 1em;
-    }
-
-    .evaluation-loading h3
-    {
-        font-size: 1.2em;
-    }
-
-    .evaluation-loading p
-    {
-        font-size: 0.9em;
-    }
-
-    .loading-spinner
-    {
-        width: 40px;
-        height: 40px;
-        border-width: 4px;
-    }
-
-    .total-score
-    {
-        font-size: 1.8em;
-    }
-
-    .evaluation-header h2
-    {
-        font-size: 1.1em;
-    }
-
-    .section-header
-    {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3em;
-    }
-
-    .section-header h3
-    {
-        font-size: 1em;
-    }
-
-    .section-score
-    {
-        font-size: 1em;
-    }
-
-    .evaluation-section-card
-    {
-        padding: 1em;
-    }
-
-    .subsection h4
-    {
-        font-size: 0.95em;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.2em;
     }
 }

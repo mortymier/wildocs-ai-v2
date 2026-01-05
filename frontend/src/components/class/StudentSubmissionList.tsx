@@ -9,10 +9,11 @@ import '../styles/SubmissionList.css';
 interface SubmissionListProps 
 { 
     submissions: SubmissionDetails[],
+    onViewEvalClick: (submission: SubmissionDetails) => void,
     onDeleteClick: (submission: SubmissionDetails) => void
 }
 
-export default function StudentSubmissionList({submissions, onDeleteClick}: SubmissionListProps)
+export default function StudentSubmissionList({submissions, onViewEvalClick, onDeleteClick}: SubmissionListProps)
 {
     return(
         <table className="submissions-table">
@@ -34,13 +35,19 @@ export default function StudentSubmissionList({submissions, onDeleteClick}: Subm
                         <td className="ai-evaluation">
                             {
                                 submission.isEvaluated ? 
-                                <span className="view-evaluation"> 
+                                <span 
+                                    className="view-evaluation"
+                                    title="View AI evaluation results"
+                                    onClick={() => onViewEvalClick(submission)}
+                                > 
                                     <MdOutlineRemoveRedEye/> View 
                                 </span> : 
                                 <span> Not Evaluated </span> 
                             }
                         </td>
-                        <td className="teacher-feedback"> <span> <LiaCommentDots title="View teacher feedback"/> </span> </td>
+                        <td className="teacher-feedback"> 
+                            <span> <LiaCommentDots title="View teacher feedback"/> </span> 
+                        </td>
                         <td className="actions">
                             <span>
                                 {!submission.isEvaluated && <RiRobot2Line className="evaluate" title="Evaluate SDD with AI"/>}

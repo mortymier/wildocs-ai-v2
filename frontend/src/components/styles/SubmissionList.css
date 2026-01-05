@@ -76,6 +76,7 @@
 {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .submissions-table .ai-evaluation svg
@@ -83,6 +84,11 @@
     width: 1.2em;
     height: auto;
     margin-right: 0.5em;
+}
+
+.submissions-table .ai-evaluation span:hover
+{
+    color: green;
 }
 
 .submissions-table .teacher-feedback span
