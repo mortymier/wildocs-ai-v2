@@ -83,3 +83,30 @@ export type SubmissionDetails =
     className: string;
     classJoinCode: string;
 }
+
+
+export type SimpleSectionEvaluation =
+{
+    Score: number;
+    General_Evaluation: string;
+}
+
+
+export type DetailedSectionEvaluation =
+{
+    Score: number;
+    Strengths: string;
+    Weaknesses: string;
+    Suggestions: string;
+}
+
+
+export type EvaluationResults =
+{
+    Preface: SimpleSectionEvaluation;
+    Introduction: DetailedSectionEvaluation;
+    Architectural_Design: SimpleSectionEvaluation;
+    Detailed_Design: DetailedSectionEvaluation;
+    Total_Score: number;
+}
+
