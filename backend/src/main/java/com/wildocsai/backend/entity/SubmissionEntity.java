@@ -22,12 +22,17 @@ public class SubmissionEntity
     private String fileName;
     private String fileExtension;
 
+    private LocalDateTime submittedAt;
+
     // Contains SDD content converted to JSON
     @Lob
     @Column(columnDefinition = "MEDIUMTEXT")
     private String content;
 
-    private LocalDateTime submittedAt;
+    // Contains AI evaluation result JSON
+    @Lob
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String aiEvaluation;
 
     @ManyToOne
     @JoinColumn(name = "class_id")
@@ -51,6 +56,7 @@ public class SubmissionEntity
     protected void onSubmit()
     {
         submittedAt = LocalDateTime.now();
+        aiEvaluation = null;
         teacherFeedback = null;
         thumbsUp = null;
         isEvaluated = false;
