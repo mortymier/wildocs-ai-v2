@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 2em;
+    padding: 1em 2em;
     background-color: #eee;
 }
 
@@ -77,7 +77,7 @@
 .class-details-columns
 {
     display: flex;
-    flex-wrap: wrap; /* Allow columns to stack on smaller screens */
+    flex-wrap: wrap; 
     width: 100%;
     border: 2px solid black;
 }
@@ -97,22 +97,23 @@
     border-left: 2px solid black;
 }
 
-.class-details-columns .left-column div:nth-child(2)
+.class-details-columns .class-details
 {
     display: flex;
-    flex-direction: column;
     width: 100%;
     padding: 1em;
     border-bottom: 2px solid black;
-    gap: 0.5em;
+    justify-content: flex-start;
+    gap: 4em; 
 }
 
-.class-details-columns .left-column div:nth-child(2) p
+.class-details-columns .class-details p
 {
     font-size: 1em;
+    margin-bottom: 0.5em;
 }
 
-.class-details-columns .left-column div:nth-child(2) span
+.class-details-columns .class-details span
 {
     color: maroon;
 }
@@ -140,6 +141,211 @@
     font-size: 1.1em;
     color: white;
     font-weight: 500;
+}
+
+.column-header .btn-upload-sdd
+{
+    display: flex;
+    margin-left: auto;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 0.9em;
+    background-color: white;
+    color: maroon;
+    cursor: pointer;
+    gap: 0.5em;
+}
+
+.column-header .btn-upload-sdd svg
+{
+    fill: maroon;
+}
+
+.column-header .btn-upload-sdd:hover
+{
+    background-color: goldenrod;
+    color: white;
+}
+
+.column-header .btn-upload-sdd:hover svg
+{
+    fill: white;
+}
+
+#modal-blur-background
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5); 
+    backdrop-filter: blur(5px); 
+    z-index: 9999; 
+}
+
+#submit-sdd-modal, 
+#delete-modal
+{
+    display: none; 
+    position: fixed; 
+    flex-direction: column;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10000; 
+    background-color: white; 
+    padding: 1em 2em; 
+    padding-bottom: 2em;
+    border: 1px solid goldenrod;
+    border-top: 10px solid goldenrod;
+    border-radius: 1em; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 90%; 
+    max-width: 500px; 
+}
+
+#delete-modal
+{
+    border: 1px solid maroon;
+    border-top: 10px solid maroon;
+}
+
+#submit-sdd-modal h2,
+#delete-modal h2
+{
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+#submit-sdd-modal p,
+#delete-modal p
+{
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+#submit-sdd-modal input::file-selector-button
+{
+    background-color: goldenrod;
+    color: white;
+    margin-right: 1em;
+    padding: 1em;
+    border: none;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#submit-sdd-modal input
+{
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    background-color: #eee;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 2em;
+}
+
+#submit-sdd-modal button
+{
+    background-color: goldenrod;
+    color: white;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#delete-modal button
+{
+    background-color: white;
+    color: maroon;
+    margin-top: 2em;
+    padding: 1em 2em;
+    border: 1px solid maroon;
+    border-radius: 0.5em;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#delete-modal button:hover
+{
+    background-color: maroon;
+    color: white;
+}
+
+#submit-sdd-modal button:disabled,
+#delete-modal button:disabled
+{
+    background-color: #ccc;
+    color: #666;
+    cursor: default;
+}
+
+#submit-sdd-modal button:disabled::after,
+#delete-modal button:disabled::after
+{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5em;
+    height: 0.5em;
+    margin-top: -0.5em;
+    margin-left: -0.5em;
+    border: 2px solid #666;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin
+{
+    from
+    {
+        transform: rotate(0deg);
+    }
+    to
+    {
+        transform: rotate(360deg);
+    }
+}
+
+#submit-sdd-modal svg,
+#delete-modal svg
+{
+    width: 1.5em;
+    height: auto;
+    margin-left: auto;
+    fill: red;
+    cursor: pointer;
+}
+
+#submit-sdd-modal .form-error,
+#delete-modal .form-error
+{
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    color: red;
+    margin-bottom: 1em;
+}
+
+#submit-sdd-modal .form-success,
+#delete-modal .form-success
+{
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    color: green;
+    margin-bottom: 1em;
 }
 
 /* Responsive adjustments */
@@ -181,6 +387,18 @@
     {
         border: none;
     }
+
+    .class-details-columns .class-details
+    {
+        flex-direction: column; /* Stack details vertically */
+        padding: 0.8em;
+        gap: 0;
+    }
+
+    .class-details-columns .class-details p
+    {
+        font-size: 0.9em;
+    }
 }
 
 @media (max-width: 768px)
@@ -219,6 +437,16 @@
     {
         font-size: 1em;
     }
+
+    .class-details-columns .class-details
+    {
+        padding: 0.5em;
+    }
+
+    .class-details-columns .class-details p
+    {
+        font-size: 0.8em;
+    }
 }
 
 @media (max-width: 480px)
@@ -256,5 +484,384 @@
     .class-details-columns .column-header h3
     {
         font-size: 0.9em;
+    }
+
+    .class-details-columns .class-details
+    {
+        padding: 0.3em;
+    }
+
+    .class-details-columns .class-details p
+    {
+        font-size: 0.7em;
+    }
+}
+
+/* AI Evaluation Modal Styles */
+#evaluation-modal
+{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2em;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    flex-direction: column;
+}
+
+#evaluation-modal > svg
+{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 2em;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+}
+
+#evaluation-modal > svg:hover
+{
+    color: #333;
+}
+
+.evaluation-loading
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 2em;
+    text-align: center;
+}
+
+.evaluation-loading h3
+{
+    margin: 1em 0 0.5em 0;
+    color: maroon;
+    font-size: 1.5em;
+}
+
+.evaluation-loading p
+{
+    color: #666;
+    font-size: 1.1em;
+}
+
+.loading-spinner
+{
+    width: 60px;
+    height: 60px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid maroon;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin
+{
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.evaluation-error
+{
+    padding: 2em;
+    text-align: center;
+}
+
+.evaluation-error h3
+{
+    color: #dc3545;
+    margin-bottom: 1em;
+}
+
+.evaluation-results
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.evaluation-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #eee;
+}
+
+.evaluation-header h2
+{
+    color: maroon;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.total-score
+{
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.evaluation-sections
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.evaluation-section-card
+{
+    border: 1px solid #ddd;
+    border-left: 4px solid maroon;
+    border-radius: 8px;
+    padding: 1.5em;
+    background-color: #fafafa;
+    transition: box-shadow 0.2s;
+}
+
+.evaluation-section-card:hover
+{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.section-header h3
+{
+    color: maroon;
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.section-score
+{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: goldenrod;
+}
+
+.section-evaluation
+{
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+.subsections
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1.5em;
+}
+
+.subsection
+{
+    background-color: white;
+    padding: 1em;
+    border-radius: 6px;
+    border-left: 3px solid goldenrod;
+}
+
+.subsection h4
+{
+    color: #333;
+    font-size: 1.1em;
+    margin: 0 0 0.5em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subsection h4 span
+{
+    color: goldenrod;
+    font-size: 0.9em;
+}
+
+.subsection p
+{
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.section-feedback
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    background-color: white;
+    padding: 1em;
+    border-radius: 6px;
+}
+
+.section-feedback div
+{
+    line-height: 1.6;
+    color: #555;
+}
+
+.section-feedback strong
+{
+    color: #333;
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.view-evaluation
+{
+    cursor: pointer;
+    color: maroon;
+    transition: color 0.2s;
+}
+
+.view-evaluation:hover
+{
+    color: goldenrod;
+}
+
+/* Responsive Design for Evaluation Modal */
+@media (max-width: 1024px)
+{
+    #evaluation-modal
+    {
+        width: 95%;
+        max-width: 800px;
+        padding: 1.5em;
+    }
+
+    .total-score
+    {
+        font-size: 2.5em;
+    }
+
+    .evaluation-header h2
+    {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 768px)
+{
+    #evaluation-modal
+    {
+        width: 95%;
+        padding: 1em;
+    }
+
+    .evaluation-header
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+
+    .total-score
+    {
+        font-size: 2em;
+    }
+
+    .evaluation-header h2
+    {
+        font-size: 1.3em;
+    }
+
+    .section-header h3
+    {
+        font-size: 1.1em;
+    }
+
+    .section-score
+    {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px)
+{
+    #evaluation-modal
+    {
+        width: 95%;
+        padding: 0.8em;
+    }
+
+    .evaluation-loading
+    {
+        padding: 2em 1em;
+    }
+
+    .evaluation-loading h3
+    {
+        font-size: 1.2em;
+    }
+
+    .evaluation-loading p
+    {
+        font-size: 0.9em;
+    }
+
+    .loading-spinner
+    {
+        width: 40px;
+        height: 40px;
+        border-width: 4px;
+    }
+
+    .total-score
+    {
+        font-size: 1.8em;
+    }
+
+    .evaluation-header h2
+    {
+        font-size: 1.1em;
+    }
+
+    .section-header
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3em;
+    }
+
+    .section-header h3
+    {
+        font-size: 1em;
+    }
+
+    .section-score
+    {
+        font-size: 1em;
+    }
+
+    .evaluation-section-card
+    {
+        padding: 1em;
+    }
+
+    .subsection h4
+    {
+        font-size: 0.95em;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2em;
     }
 }

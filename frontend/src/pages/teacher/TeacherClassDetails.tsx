@@ -77,11 +77,15 @@ export default function TeacherClassDetails()
                                     <IoIosInformationCircleOutline/>
                                     <h3> Details </h3>
                                 </div>
-                                <div>
-                                    <p> <span> School Year : </span> &nbsp; {classDetails.schoolYear} </p>
-                                    <p> <span> Semester : </span> &nbsp; {classDetails.semester} </p>
-                                    <p> <span> Section : </span> &nbsp; {classDetails.section} </p>
-                                    <p> <span> Teacher : </span> &nbsp; {classDetails.teacherName} </p>
+                                <div className="class-details">
+                                    <div>
+                                        <p> <span> School Year : </span> &nbsp; {classDetails.schoolYear} </p>
+                                        <p> <span> Semester : </span> &nbsp; {classDetails.semester} </p>
+                                    </div>
+                                    <div>
+                                        <p> <span> Section : </span> &nbsp; {classDetails.section} </p>
+                                        <p> <span> Teacher : </span> &nbsp; {classDetails.teacherName} </p>
+                                    </div>
                                 </div>
                                 <div className="column-header">
                                     <IoDocumentTextOutline/>

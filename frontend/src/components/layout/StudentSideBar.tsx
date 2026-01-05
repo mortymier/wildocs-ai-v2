@@ -46,7 +46,7 @@ export default function StudentSideBar()
                 </Link>
                 <Link 
                     to="/student/classes"
-                    className={location.pathname === "/student/classes" ? "current" : ""}
+                    className={location.pathname.startsWith("/student/class") ? "current" : ""}
                 >
                     <FaChalkboardTeacher/>
                     <li> View Classes </li> 

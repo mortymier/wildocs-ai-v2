@@ -26,7 +26,6 @@ export default function StudentViewClasses()
             try
             {
                 const fetchResponse = await getClassesByStudent(userDetails.email);
-                console.log(fetchResponse);
                 setClasses(fetchResponse);
             }
             catch(error: any)
