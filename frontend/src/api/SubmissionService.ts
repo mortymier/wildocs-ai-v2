@@ -85,3 +85,29 @@ export const deleteSubmission = async(joinCode: string, submissionNumber: number
         throw new Error('Deleting submission failed. Please try again.');
     }
 }
+
+export const getSubmissionEvaluationResults = async(joinCode: string, submissionNumber: number) =>
+{
+    try
+    {
+        const response = await axios.get
+        (
+            `http://localhost:8080/api/submission/evaluation-results`,
+            {
+                params: { joinCode, submissionNumber },
+                withCredentials: true
+            }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if (error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Fetching evaluation results failed. Please try again.');
+    }
+}
