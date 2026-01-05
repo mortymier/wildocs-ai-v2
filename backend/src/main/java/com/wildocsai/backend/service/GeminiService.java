@@ -23,19 +23,19 @@ public class GeminiService
 
     /*
         If a model runs out of requests-per-day, try another one from this list:
+
         - gemini-3-flash-preview
         - gemini-2.5-flash
         - gemini-2.5-flash-lite
-        - gemini-2.0-flash
-        - gemini-2.0-flash-001
-        - gemini-2.0-flash-lite
-        - gemini-2.0-flash-lite-001
+
+        Each of them has a limit of 20 requests per day.
+        Switching between models gives you a total of 60 requests per day.
      */
 
     public String askGemini(String prompt)
     {
         GenerateContentResponse response = geminiClient.models
-                .generateContent("gemini-3-flash", prompt, null);
+                .generateContent("gemini-3-flash-preview", prompt, null);
 
         log.info("\n\nText Response:\n\n" + response.text());
 
@@ -122,11 +122,14 @@ public class GeminiService
                  - **Minimum Score Rule:** After all deductions, if the final score for this section is 0 but the "Detailed Design" section in the JSON is not empty, set the score between 5-10. User does not need to know about this rule.
                - **Evaluation:** Provide a summary of strengths (e.g., "Well-defined components in the User Authentication module"), weaknesses (e.g., "Missing diagrams and backend details in Module 2"), and specific suggestions (e.g., "Add sequence diagrams for all transactions to clarify data flow.").
 
-            **OUTPUT FORMAT:**
-            Your final output MUST be a single, valid JSON object. Do not include any text or explanations outside of the JSON structure.
-            Do not add JSON markdown code fence to the output.
+            **CRITICAL OUTPUT FORMATTING RULES:**
+            Your response MUST be a single, raw JSON object. It is absolutely critical that you follow these rules, as your output will be parsed directly by a program and will fail otherwise.
 
-            ```json
+            1.  **NO MARKDOWN:** Do NOT wrap the JSON in markdown code fences (like ```json ... ```).
+            2.  **NO EXTRA TEXT:** Do NOT include any explanatory text, greetings, or apologies before or after the JSON object.
+            3.  **RAW PLAINTEXT ONLY:** The entire response body must be the JSON object itself, starting with '{' and ending with '}'.
+
+            **JSON Structure to follow:**
             {
               "Preface": {
                 "Score": <number>,
@@ -150,7 +153,7 @@ public class GeminiService
               },
               "Total_Score": <number>
             }
-            ```
+            
             
             Here is the SDD JSON to evaluate:
 
@@ -158,7 +161,7 @@ public class GeminiService
 
         GenerateContentResponse evaluation = geminiClient.models.generateContent
         (
-            "gemini-2.5-flash-lite",
+            "gemini-2.5-flash",
             prompt,
             null
         );
@@ -166,7 +169,11 @@ public class GeminiService
         log.info("\nGemini Prompt:\n" + prompt);
         log.info("\nGemini Evaluation Result:\n" + evaluation.text());
 
-        submission.setAiEvaluation(evaluation.text());
+        // Make sure no JSON markdown fences surround the result (```json ```)
+        String rawEvaluation = evaluation.text();
+        String cleanEvaluation = rawEvaluation.replace("```json", "").replace("```", "").trim();
+
+        submission.setAiEvaluation(cleanEvaluation);
         submission.setIsEvaluated(true);
         submissionRepository.save(submission);
 
