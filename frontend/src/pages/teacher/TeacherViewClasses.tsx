@@ -26,7 +26,6 @@ export default function TeacherViewClasses()
             try
             {
                 const fetchResponse = await getClassesByTeacher(userDetails.email);
-                console.log(fetchResponse);
                 setClasses(fetchResponse);
             }
             catch(error: any)
