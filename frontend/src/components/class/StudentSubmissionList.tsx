@@ -10,10 +10,11 @@ interface SubmissionListProps
 { 
     submissions: SubmissionDetails[],
     onViewEvalClick: (submission: SubmissionDetails) => void,
+    onSDDAIClick: (submisson: SubmissionDetails) => void,
     onDeleteClick: (submission: SubmissionDetails) => void
 }
 
-export default function StudentSubmissionList({submissions, onViewEvalClick, onDeleteClick}: SubmissionListProps)
+export default function StudentSubmissionList({submissions, onViewEvalClick, onSDDAIClick, onDeleteClick}: SubmissionListProps)
 {
     return(
         <table className="submissions-table">
@@ -50,7 +51,14 @@ export default function StudentSubmissionList({submissions, onViewEvalClick, onD
                         </td>
                         <td className="actions">
                             <span>
-                                {!submission.isEvaluated && <RiRobot2Line className="evaluate" title="Evaluate SDD with AI"/>}
+                                {
+                                    !submission.isEvaluated && 
+                                    <RiRobot2Line 
+                                        className="evaluate" 
+                                        title="Evaluate SDD with AI"
+                                        onClick={() => onSDDAIClick(submission)}
+                                    />
+                                }
                                 <AiOutlineDelete 
                                     className="delete" 
                                     title="Delete SDD submission"
