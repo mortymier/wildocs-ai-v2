@@ -2,6 +2,7 @@ import { useParams, Link, useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getClassDetails, getStudentsInClass } from '../../api/ClassService.ts';
 import { getStudentSubmissionsInClass, uploadSubmission, deleteSubmission, getSubmissionEvaluationResults } from '../../api/SubmissionService.ts';
+import { evaluateSDD } from '../../api/GeminiService.ts';
 import { IoArrowBack, IoDocumentTextOutline } from 'react-icons/io5';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { FaRegUser } from 'react-icons/fa6';
@@ -16,6 +17,7 @@ import StudentSideBar from '../../components/layout/StudentSideBar.tsx';
 import Footer from '../../components/layout/Footer.tsx';
 import StudentList from '../../components/class/StudentList.tsx';
 import StudentSubmissionList from '../../components/class/StudentSubmissionList.tsx';
+import wild_evaluator from '../../assets/wild_evaluator.webp';
 import '../styles/ClassDetails.css';
 import '../styles/StudentLayout.css';
 
@@ -30,6 +32,7 @@ export default function StudentClassDetails()
     const [students, setStudents] = useState<AuthenticatedUser[]>([]);
     const [submissions, setSubmissions] = useState<SubmissionDetails[]>([]);
     const [showSubmitModal, setShowSubmitModal] = useState<boolean>(false);
+    const [showSDDAIModal, setShowSDDAIModal] = useState<boolean>(false);
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [selectedSubmission, setSelectedSubmission] = useState<SubmissionDetails | null>(null);
@@ -91,7 +94,7 @@ export default function StudentClassDetails()
         setModalSuccess('');
     };
 
-    const toggleViewEvaluationModal = async(submission: SubmissionDetails) =>
+    const toggleViewEvaluationResultsModal = async(submission: SubmissionDetails) =>
     {
         const modalBackground = document.getElementById('modal-blur-background');
         const modal = document.getElementById('evaluation-results-modal');
@@ -107,12 +110,12 @@ export default function StudentClassDetails()
         }
         catch(error: any)
         {
-            alert(error);
+            alert(error.message);
             modalBackground!.style.display = 'none';
         }
     };
 
-    const closeEvaluationModal = () =>
+    const closeEvaluationResultsModal = () =>
     {
         const modalBackground = document.getElementById('modal-blur-background');
         const modal = document.getElementById('evaluation-results-modal');
@@ -120,6 +123,22 @@ export default function StudentClassDetails()
         modal!.style.display = 'none';
         setSelectedSubmission(null);
         setEvaluationResults(null);
+    };
+
+    const toggleSDDAIModal = () =>
+    {
+        setShowSDDAIModal(!showSDDAIModal);
+        const modalBackground = document.getElementById('modal-blur-background');
+        const modal = document.getElementById('sdd-ai-modal');
+
+        if(modalBackground && modal)
+        {
+            modalBackground.style.display = showSDDAIModal ? 'none' : 'block';
+            modal.style.display = showSDDAIModal ? 'none' : 'flex';
+        }
+
+        setModalError('');
+        setModalSuccess('');
     };
 
     const toggleDeleteModal = () =>
@@ -183,10 +202,44 @@ export default function StudentClassDetails()
         }
     };
 
+    const handleSDDAIClick = (submission: SubmissionDetails) =>
+    {
+        setSelectedSubmission(submission);
+        toggleSDDAIModal();
+    }
+
     const handleDeleteClick = (submission: SubmissionDetails) =>
     {
         setSelectedSubmission(submission);
         toggleDeleteModal();
+    };
+
+    const handleConfirmEvaluate = async(e: React.FormEvent<HTMLFormElement>) =>
+    {
+        e.preventDefault();
+        setModalError('');
+        setModalSuccess('');
+        setLoading(true);
+
+        try
+        {
+            const evaluationResponse = await evaluateSDD(joinCode!, selectedSubmission!.submissionNumber);
+            setModalSuccess(evaluationResponse);
+
+            setTimeout(() =>
+            {
+                window.location.reload();
+
+            }, 1500);
+        }
+        catch(error: any)
+        {
+            setModalError(error.message);
+        }
+        finally
+        {
+            setLoading(false);
+        }
     };
 
     const handleConfirmDelete = async(e: React.FormEvent<HTMLFormElement>) =>
@@ -274,7 +327,8 @@ export default function StudentClassDetails()
                                 <div>
                                     <StudentSubmissionList 
                                         submissions={submissions} 
-                                        onViewEvalClick={toggleViewEvaluationModal}
+                                        onViewEvalClick={toggleViewEvaluationResultsModal}
+                                        onSDDAIClick={handleSDDAIClick}
                                         onDeleteClick={handleDeleteClick}
                                     />
                                 </div>
@@ -320,9 +374,9 @@ export default function StudentClassDetails()
             <div id="evaluation-results-modal">
                 <IoIosCloseCircleOutline
                     className="er-close"
-                    onClick={closeEvaluationModal}
+                    onClick={closeEvaluationResultsModal}
                 />
-                {/* 1. Evaluation Results Header */}
+                {/* Evaluation Results Header */}
                 <div className="er-header">
                     <div className="er-header-a">
                         <h1> AI Evaluation Results </h1>
@@ -345,7 +399,7 @@ export default function StudentClassDetails()
                     </div>
                 </div>
                 <hr/>
-                {/* 2. Evaluation Results Body */}
+                {/* Evaluation Results Body */}
                 <div className="er-body">
                     <div className="section-card">
                         <div
@@ -426,12 +480,42 @@ export default function StudentClassDetails()
                             <h4> Suggestions (~): </h4>
                             <p> {evaluationResults?.Detailed_Design.Suggestions} </p>
                         </div>
-                        <div>
-                            <p> </p>
-                        </div>
                     </div>
                 </div>
             </div>
+
+            {/* AI SDD Evaluation Modal */}
+            <form id="sdd-ai-modal" onSubmit={handleConfirmEvaluate}>
+                <IoIosCloseCircleOutline
+                    className="sdd-ai-close"
+                    onClick={!loading ? toggleSDDAIModal : undefined} 
+                    style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.5 : 1 }}
+                />
+                <h2> Evaluate SDD </h2>
+                <p> <IoDocumentTextOutline/> Submission: {selectedSubmission?.fileName} </p>
+                {modalError && <p className="form-error">{modalError}</p>}
+                {modalSuccess && <p className="form-success">{modalSuccess}</p>}
+                {!loading ?
+                    <div className="evaluation-tips">
+                        <h3> Evaluation Tips: </h3>
+                        <ul>
+                            <li> To get the most accurate evaluation, make sure all headers for sections, subsections, modules, and transactions are present (e.g. 1. Introduction, 1.1. Purpose, Module 1 Authentication, Transaction 1.1. Login). </li>
+                            <li> Missing headers will cause the system to not detect your SDD content and reduce your evaluation score. </li>
+                            <li> The SDD is scored per section and as a whole. </li>
+                        </ul>
+                    </div>
+                    : 
+                    <div className="evaluation-loading">
+                        <img src={wild_evaluator} alt="asd"/>
+                        <h3> A wild SDD Evaluator has appeared! </h3>
+                        <p> Please wait while it analyzes your SDD... <span> </span> </p>
+                    </div>
+                }
+                <div className="sdd-ai-buttons"> 
+                    <button type="button" onClick={toggleSDDAIModal} disabled={loading}> Cancel </button>
+                    <button type="submit" disabled={loading}> Evaluate Now </button>
+                </div>
+            </form>
 
             {/* Delete submission modal */}
             <form id="delete-modal" onSubmit={handleConfirmDelete}>

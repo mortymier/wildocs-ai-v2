@@ -514,6 +514,166 @@
     line-height: 1.5;
 }
 
+#sdd-ai-modal
+{
+    display: none; 
+    position: fixed; 
+    flex-direction: column;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10000; 
+    background-color: white; 
+    padding: 1em 2em; 
+    padding-bottom: 2em;
+    border: 1px solid maroon;
+    border-top: 10px solid maroon;
+    border-radius: 1em; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 50%; 
+}
+
+#sdd-ai-modal .form-error,
+#sdd-ai-modal .form-success
+{
+    width: 100%;
+    margin: 0;
+    margin-top: 1em;
+    font-size: 1.1em;
+}
+
+.sdd-ai-close
+{
+    width: 1.3em;
+    height: auto;
+    margin-left: auto;
+    fill: red;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#sdd-ai-modal h2
+{
+    color: maroon;
+    margin-bottom: 0.5em;
+}
+
+.evaluation-tips
+{
+    margin: 2em 0;
+    padding: 1em 1.5em 2em 1.5em;
+    border-radius: 0.5em;
+    background-color: lightblue;
+}
+
+.evaluation-tips h3
+{
+    color: maroon;
+    margin-bottom: 0.5em;
+}
+
+.evaluation-tips ul
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.evaluation-tips li
+{
+    line-height: 1.5;
+}
+
+.evaluation-loading
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2em 0;
+    overflow: hidden;
+}
+
+.evaluation-loading img
+{
+    width: 10em;
+    position: relative;
+    animation: moveLeftToRight 7s linear infinite; 
+    margin-bottom: 1em;
+}
+
+@keyframes moveLeftToRight
+{
+    0% { left: -10em; }
+    100% { left: 100%; }
+}
+
+.evaluation-loading h3
+{
+    align-self: center;
+    color: goldenrod;
+    margin-bottom: 0.5em;
+}
+
+.evaluation-loading p
+{
+    align-self: center;
+}
+
+.sdd-ai-buttons
+{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.sdd-ai-buttons button
+{
+    width: 40%;
+    padding: 0.5em 0;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.sdd-ai-buttons button:first-child
+{
+    background-color: white;
+    color: maroon;
+    border: 3px solid maroon;
+}
+
+.sdd-ai-buttons button:last-child
+{
+    background-color: maroon;
+    color: white;
+    border: 3px solid maroon;
+}
+
+.sdd-ai-buttons button:disabled
+{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    border: 3px solid #333;
+}
+
+.evaluation-loading p span 
+{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5em;
+    border: 3px solid goldenrod;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px)
 {

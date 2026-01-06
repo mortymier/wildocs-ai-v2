@@ -20,7 +20,7 @@ export const createClass = async(formData: CreateClassForm, email: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -47,7 +47,7 @@ export const getClassesByTeacher = async(email: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -74,7 +74,7 @@ export const joinClass = async(email: string, joinCode: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -101,7 +101,7 @@ export const getClassesByStudent = async(email: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -128,7 +128,7 @@ export const getClassDetails = async(joinCode: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -155,7 +155,7 @@ export const getStudentsInClass = async(joinCode: string) =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
