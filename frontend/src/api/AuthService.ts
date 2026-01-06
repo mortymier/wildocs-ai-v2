@@ -90,7 +90,7 @@ export const logout = async() =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -135,7 +135,7 @@ export const getAuthStatus = async() =>
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }

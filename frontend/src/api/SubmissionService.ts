@@ -77,7 +77,7 @@ export const deleteSubmission = async(joinCode: string, submissionNumber: number
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
@@ -103,7 +103,7 @@ export const getSubmissionEvaluationResults = async(joinCode: string, submission
     }
     catch(error: any)
     {
-        if (error.response?.data)
+        if(error.response?.data)
         {
             throw new Error(error.response.data);
         }
