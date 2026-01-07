@@ -11,10 +11,11 @@ interface SubmissionListProps
     submissions: SubmissionDetails[],
     onViewEvalClick: (submission: SubmissionDetails) => void,
     onSDDAIClick: (submisson: SubmissionDetails) => void,
+    onViewFeedbackClick: (submission: SubmissionDetails) => void
     onDeleteClick: (submission: SubmissionDetails) => void
 }
 
-export default function StudentSubmissionList({submissions, onViewEvalClick, onSDDAIClick, onDeleteClick}: SubmissionListProps)
+export default function StudentSubmissionList({submissions, onViewEvalClick, onSDDAIClick, onViewFeedbackClick, onDeleteClick}: SubmissionListProps)
 {
     return(
         <table className="submissions-table">
@@ -47,7 +48,15 @@ export default function StudentSubmissionList({submissions, onViewEvalClick, onS
                             }
                         </td>
                         <td className="teacher-feedback"> 
-                            <span> <LiaCommentDots title="View teacher feedback"/> </span> 
+                            <span
+                                title="View teacher feedback"
+                                onClick={() => onViewFeedbackClick(submission)}
+                                className={(submission.thumbsUp === true ? "approved" : "") + " " + (submission.thumbsUp == false ? "rejected" : "")}
+                            > 
+                                <LiaCommentDots/> &nbsp; 
+                                {submission.thumbsUp === true ? "Approved" : ""} 
+                                {submission.thumbsUp === false ? "Rejected" : ""}
+                            </span> 
                         </td>
                         <td className="actions">
                             <span>
