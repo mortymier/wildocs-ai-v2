@@ -95,13 +95,28 @@
 {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .submissions-table .teacher-feedback svg
 {
     width: 1.3em;
     height: auto;
-    cursor: pointer;
+}
+
+.submissions-table .teacher-feedback span:hover
+{
+    color: goldenrod;
+}
+
+.approved
+{
+    color: green;
+}
+
+.rejected
+{
+    color: red;
 }
 
 .submissions-table .actions span
@@ -126,11 +141,6 @@
 .submissions-table .actions .delete:hover
 {
     fill: red;
-}
-
-.submissions-table .teacher-feedback svg:hover
-{
-    fill: goldenrod;
 }
 
 .submissions-table th:first-child,
