@@ -84,7 +84,8 @@ export const deleteSubmission = async(joinCode: string, submissionNumber: number
 
         throw new Error('Deleting submission failed. Please try again.');
     }
-}
+};
+
 
 export const getSubmissionEvaluationResults = async(joinCode: string, submissionNumber: number) =>
 {
@@ -110,4 +111,59 @@ export const getSubmissionEvaluationResults = async(joinCode: string, submission
 
         throw new Error('Fetching evaluation results failed. Please try again.');
     }
-}
+};
+
+
+export const getAllSubmissionsInClass = async(joinCode: string) =>
+{
+    try
+    {
+        const response = await axios.get
+        (
+            `http://localhost:8080/api/submission/all/class`,
+            {
+                params: { joinCode },
+                withCredentials: true
+            }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if(error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Fetching student submissions failed. Please try again.');
+    }
+};
+
+
+export const updateTeacherFeedback = async(joinCode: string, submissionNumber: number, teacherFeedback?: string, thumbsUp?: boolean) =>
+{
+    try
+    {
+        const response = await axios.put
+        (
+            `http://localhost:8080/api/submission/teacher-feedback`,
+            null,
+            {
+                params: { joinCode, submissionNumber, teacherFeedback, thumbsUp },
+                withCredentials: true
+            }
+        );
+
+        return response.data;
+    }
+    catch(error: any)
+    {
+        if(error.response?.data)
+        {
+            throw new Error(error.response.data);
+        }
+
+        throw new Error('Updating teacher feedback failed. Please try again.');
+    }
+};
