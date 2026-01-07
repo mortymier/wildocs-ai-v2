@@ -11,6 +11,7 @@ import { MdUpload } from 'react-icons/md';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { FaFileCircleCheck } from 'react-icons/fa6';
 import { FaFileCircleExclamation } from 'react-icons/fa6';
+import { BiLike, BiDislike } from "react-icons/bi";
 import type { ClassDetails, AuthenticatedUser, SubmissionDetails, EvaluationResults } from '../../types.ts';
 import UserHeader from '../../components/layout/UserHeader.tsx';
 import StudentSideBar from '../../components/layout/StudentSideBar.tsx';
@@ -33,6 +34,7 @@ export default function StudentClassDetails()
     const [submissions, setSubmissions] = useState<SubmissionDetails[]>([]);
     const [showSubmitModal, setShowSubmitModal] = useState<boolean>(false);
     const [showSDDAIModal, setShowSDDAIModal] = useState<boolean>(false);
+    const [showFeedbackModal, setShowFeedbackModal] = useState<boolean>(false);
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [selectedSubmission, setSelectedSubmission] = useState<SubmissionDetails | null>(null);
@@ -141,6 +143,19 @@ export default function StudentClassDetails()
         setModalSuccess('');
     };
 
+    const toggleFeedbackModal = () =>
+    {
+        setShowFeedbackModal(!showFeedbackModal);
+        const modalBackground = document.getElementById('modal-blur-background');
+        const modal = document.getElementById('view-feedback-modal');
+
+        if(modalBackground && modal) 
+        {
+            modalBackground.style.display = showFeedbackModal ? 'none' : 'block';
+            modal.style.display = showFeedbackModal ? 'none' : 'flex';
+        }
+    };
+
     const toggleDeleteModal = () =>
     {
         setShowDeleteModal(!showDeleteModal);
@@ -206,7 +221,13 @@ export default function StudentClassDetails()
     {
         setSelectedSubmission(submission);
         toggleSDDAIModal();
-    }
+    };
+
+    const handleViewFeedbackClick = (submission: SubmissionDetails) =>
+    {
+        setSelectedSubmission(submission);
+        toggleFeedbackModal();
+    };
 
     const handleDeleteClick = (submission: SubmissionDetails) =>
     {
@@ -329,6 +350,7 @@ export default function StudentClassDetails()
                                         submissions={submissions} 
                                         onViewEvalClick={toggleViewEvaluationResultsModal}
                                         onSDDAIClick={handleSDDAIClick}
+                                        onViewFeedbackClick={handleViewFeedbackClick}
                                         onDeleteClick={handleDeleteClick}
                                     />
                                 </div>
@@ -484,6 +506,41 @@ export default function StudentClassDetails()
                 </div>
             </div>
 
+            {/* View Teacher Feedback Modal */}
+            <div id="view-feedback-modal">
+                <IoIosCloseCircleOutline
+                    className="feedback-close"
+                    onClick={toggleFeedbackModal}
+                />
+                <h2> View Teacher Feedback </h2>
+                <p> <IoDocumentTextOutline/> Submission: {selectedSubmission?.fileName} </p>
+                <div className="feedback-content">
+                    <h3> Feedback: </h3>
+                    {selectedSubmission?.teacherFeedback ? (
+                        <p className="feedback-text"> {selectedSubmission.teacherFeedback} </p>
+                    ) : (
+                        <p className="no-feedback"> No feedback provided yet. </p>
+                    )}
+                    <div className="feedback-rating">
+                        <h3> Teacher's Rating: </h3>
+                        {selectedSubmission?.thumbsUp === true && (
+                            <p className="rating-like">
+                                <BiLike/> SDD Approved
+                            </p>
+                        )}
+                        {selectedSubmission?.thumbsUp === false && (
+                            <p className="rating-dislike">
+                                <BiDislike/> Needs Improvement
+                            </p>
+                        )}
+                        {selectedSubmission?.thumbsUp === null && (
+                            <p className="no-rating"> No rating provided yet. </p>
+                        )}
+                    </div>
+                </div>
+                <button onClick={toggleFeedbackModal}> Close </button>
+            </div>
+
             {/* AI SDD Evaluation Modal */}
             <form id="sdd-ai-modal" onSubmit={handleConfirmEvaluate}>
                 <IoIosCloseCircleOutline
@@ -502,6 +559,7 @@ export default function StudentClassDetails()
                             <li> To get the most accurate evaluation, make sure all headers for sections, subsections, modules, and transactions are present (e.g. 1. Introduction, 1.1. Purpose, Module 1 Authentication, Transaction 1.1. Login). </li>
                             <li> Missing headers will cause the system to not detect your SDD content and reduce your evaluation score. </li>
                             <li> The SDD is scored per section and as a whole. </li>
+                            <li> If you are confident that your SDD has complete headers, proceed with evaluation. </li>
                         </ul>
                     </div>
                     : 

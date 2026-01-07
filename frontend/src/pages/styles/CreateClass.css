@@ -18,6 +18,7 @@
     padding: 1.5em 2em;
     padding-bottom: 2.5em;
     border-radius: 1em;
+    border: 1px solid #666;
     background-color: lightblue;
     gap: 1em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
