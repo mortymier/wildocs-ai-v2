@@ -49,6 +49,20 @@ public class SubmissionController
         }
     }
 
+    @GetMapping("/all/class")
+    public ResponseEntity<?> getAllSubmissionsInClass(@RequestParam String joinCode)
+    {
+        try
+        {
+            List<SubmissionDetailsResponse> submissions = submissionService.getAllSubmissionsInClass(joinCode);
+            return ResponseEntity.ok(submissions);
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @GetMapping("/evaluation-results")
     public ResponseEntity<?> getSubmissionEvaluationResults(@RequestParam String joinCode, @RequestParam Integer submissionNumber)
     {
@@ -67,13 +81,33 @@ public class SubmissionController
         }
     }
 
+    @PutMapping("/teacher-feedback")
+    public ResponseEntity<?> updateTeacherFeedback
+    (
+        @RequestParam String joinCode,
+        @RequestParam Integer submissionNumber,
+        @RequestParam(required = false) String teacherFeedback,
+        @RequestParam(required = false) Boolean thumbsUp
+    )
+    {
+        try
+        {
+            submissionService.updateTeacherFeedback(joinCode, submissionNumber, teacherFeedback, thumbsUp);
+            return ResponseEntity.ok("Teacher feedback saved!");
+        }
+        catch(RuntimeException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteSubmission(@RequestParam String joinCode, @RequestParam Integer submissionNumber)
     {
         try
         {
             submissionService.deleteSubmission(joinCode, submissionNumber);
-            return ResponseEntity.ok("Submission deleted successfully");
+            return ResponseEntity.ok("Submission deleted successfully!");
         }
         catch(RuntimeException e)
         {

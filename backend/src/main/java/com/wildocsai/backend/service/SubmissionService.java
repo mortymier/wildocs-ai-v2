@@ -153,7 +153,46 @@ public class SubmissionService
                 .collect(Collectors.toList());
     }
 
+    public List<SubmissionDetailsResponse> getAllSubmissionsInClass(String joinCode)
+    {
+        ClassEntity classEntity = classRepository.findByJoinCode(joinCode)
+                .orElseThrow(() -> new IllegalArgumentException("Class with join code " + joinCode + " not found."));
 
+        List<SubmissionEntity> submissions = submissionRepository.findByClassEntity(classEntity);
+
+        return submissions.stream()
+                .map(submission -> new SubmissionDetailsResponse
+                (
+                    submission.getSubmissionNumber(),
+                    submission.getFileName(),
+                    submission.getFileExtension(),
+                    submission.getContent(),
+                    submission.getTeacherFeedback(),
+                    submission.getThumbsUp(),
+                    submission.getIsEvaluated(),
+                    submission.getSubmittedAt(),
+                    submission.getStudent().getFirstName() + " " + submission.getStudent().getLastName(),
+                    submission.getStudent().getEmail(),
+                    submission.getClassEntity().getClassName(),
+                    submission.getClassEntity().getJoinCode()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public void updateTeacherFeedback(String joinCode, Integer submissionNumber, String teacherFeedback, Boolean thumbsUp)
+    {
+        ClassEntity classEntity = classRepository.findByJoinCode(joinCode)
+                .orElseThrow(() -> new IllegalArgumentException("Class with join code " + joinCode + " not found."));
+
+        SubmissionEntity submission = submissionRepository.findByClassEntityAndSubmissionNumber(classEntity, submissionNumber)
+                .orElseThrow(() -> new IllegalArgumentException("Submission number " + submissionNumber + " not found in class " + joinCode + "."));
+
+        submission.setTeacherFeedback(teacherFeedback);
+        submission.setThumbsUp(thumbsUp);
+
+        submissionRepository.save(submission);
+        log.info("Updated teacher feedback for submission {} in class {}", submissionNumber, joinCode);
+    }
 
     public void deleteSubmission(String joinCode, Integer submissionNumber)
     {
