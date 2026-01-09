@@ -284,12 +284,12 @@ public class SubmissionUtility
         cleaned = cleaned.replaceAll("(?s)Signature.*?(?=Preface)", "");
 
         // Remove the entire Table of Contents section (from "Table of Contents" to the next numbered section)
-        cleaned = cleaned.replaceAll("(?s)Table of Contents.*?(?=\\n\\s*Software Design Descriptions)", "");
+        cleaned = cleaned.replaceAll("(?s)Table of Contents.*?(?=\\n\\s*Software Design Description)", "");
 
         // Remove recurring multi-line headers (Software Design Descriptions + project name + version + date)
         cleaned = cleaned.replaceAll
         (
-            "(?m)^Software Design Descriptions\\s*\\n\\s*\\S+.*\\s*\\n\\s*Document Version:.*\\s*\\n\\s*Published Date:.*$", ""
+            "(?m)^Software Design Description\\s*\\n\\s*\\S+.*\\s*\\n\\s*Document Version:.*\\s*\\n\\s*Published Date:.*$", ""
         );
 
         // Remove page numbers like "Page X of Y"
