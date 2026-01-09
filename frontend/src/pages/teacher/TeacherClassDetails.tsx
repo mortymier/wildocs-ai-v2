@@ -269,7 +269,7 @@ export default function TeacherClassDetails()
                                 </div>
                                 <div className="column-header">
                                     <IoDocumentTextOutline/>
-                                    <h3> Submissions </h3>
+                                    <h3> Submissions ({submissions.length}) </h3>
                                 </div>
                                 <div>
                                     <TeacherSubmissionList
